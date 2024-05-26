@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-worker
+  labels:
+    k8s-app: celery-worker
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      k8s-app: celery-worker
+  template:
+    metadata:
+      labels:
+        k8s-app: celery-worker
+      #annotations:
+      #  seccomp.security.alpha.kubernetes.io/pod: '{ "defaultAction": "SCMP_ACT_LOG" }'
+    spec:
+
+      #initContainers:
+      #  - name: upylab-seccomp
+      #    image: ryukenin/upylab-seccomp:new
+      #    volumeMounts:
+      #      - mountPath: /var/lib/kubelet/seccomp/profiles
+      #        name: data
+
+      containers:
+      - name: celery-worker
+        image: ryukenin/upylab-celery-worker:{{ .Values.python_version }}
+        imagePullPolicy: Always
+
+        #securityContext:
+        #  seccompProfile:
+        #    type: Localhost
+        #    localhostProfile: profiles/config.json
+        resources:
+          limits:
+            memory: {{ .Values.memory_limits }}
+            cpu: {{ .Values.cpu_limits }}
+          requests:
+            memory: {{ .Values.memory_requests }}
+            cpu: {{ .Values.cpu_requests }}
+        volumeMounts:
+        - mountPath: /var/lib/kubelet/seccomp/profiles
+          name: data
+
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: shared-pvc

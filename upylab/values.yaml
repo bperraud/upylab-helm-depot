@@ -1,0 +1,13 @@
+python_version: "3.10"
+
+cpu_limits: 500m
+memory_limits: 512Mi
+
+cpu_requests: 200m
+memory_requests : 256Mi
+
+
+restrict_system_call:
+  - exit
+  - open
+  - read

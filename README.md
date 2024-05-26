@@ -1,4 +1,4 @@
-# Installing a Kubernetes Cluster on Google Cloud Platform (GCP) and Deploying Applications with Helm
+# Deploying UpyLab with Helm
 
 To install a Kubernetes cluster on Google Cloud Platform (GCP) and deploy applications using Helm releases, you can follow these general steps:
 
@@ -18,7 +18,6 @@ To install a Kubernetes cluster on Google Cloud Platform (GCP) and deploy applic
 
 	```bash
    gcloud container clusters get-credentials my-cluster
-
 6. **Add the Helm Repository** : Add the Helm repository where your Helm chart is hosted. If you have already added it previously, you can skip this step.
 
 	```bash

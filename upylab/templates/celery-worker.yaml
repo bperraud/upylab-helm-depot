@@ -42,6 +42,8 @@ spec:
             memory: {{ .Values.memory_requests }}
             cpu: {{ .Values.cpu_requests }}
         volumeMounts:
+        - mountPath: /tmp/compilab/
+          name: filestore
         - mountPath: /var/lib/kubelet/seccomp/profiles
           name: data
 
@@ -49,3 +51,6 @@ spec:
       - name: data
         persistentVolumeClaim:
           claimName: shared-pvc
+      - name: filestore
+        persistentVolumeClaim:
+          claimName: filestore-pvc

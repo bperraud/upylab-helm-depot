@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: your-nginx-image:latest
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        volumeMounts:
+        - name: staticroot
+          mountPath: /app/web/static_root
+        - name: mediaroot
+          mountPath: /app/web/media_root
+        - name: nginxconf
+          mountPath: /etc/nginx/conf.d
+      volumes:
+      - name: staticroot
+        persistentVolumeClaim:
+          claimName: staticroot-pvc
+      - name: mediaroot
+        persistentVolumeClaim:
+          claimName: mediaroot-pvc
+      - name: nginxconf
+        persistentVolumeClaim:
+          claimName: nginxconf-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+  - port: 443
+    targetPort: 443
+  selector:
+    app: nginx
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nginxconf-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

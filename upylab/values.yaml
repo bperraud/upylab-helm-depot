@@ -11,3 +11,6 @@ restrict_system_call:
   - exit
   - open
   - read
+
+
+deployUpylab2: True

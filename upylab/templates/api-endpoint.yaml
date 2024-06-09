@@ -17,9 +17,19 @@ spec:
       containers:
       - name: api
         image: ryukenin/upylab_api_endpoint:latest
+        env:
+        - name: tempdir
+          value: "/tmp/compilab"
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
+        volumeMounts:
+        - mountPath: /tmp/compilab/
+          name: filestore
+      volumes:
+      - name: filestore
+        persistentVolumeClaim:
+          claimName: filestore-pvc
 ---
 apiVersion: v1
 kind: Service

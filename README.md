@@ -41,3 +41,9 @@ This command configures kubectl to use the newly created cluster.
    kubectl get pods
    kubectl get services
 This will show the pods and services deployed in your cluster.
+
+
+
+gcloud container clusters update [CLUSTER_NAME] \
+    --update-addons=GcpFilestoreCsiDriver=ENABLED \
+    --region=[REGION]

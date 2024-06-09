@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-upylab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: django-upylab
+  template:
+    metadata:
+      labels:
+        app: django-upylab
+    spec:
+      containers:
+      - name: django-upylab
+        image: your-django-image:latest
+        command: ["gunicorn", "pylab.wsgi:application", "--bind", "0.0.0.0:8000", "--workers=4", "--timeout=120"]
+        envFrom:
+        - configMapRef:
+            name: db-config
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - name: staticroot
+          mountPath: /app/web/static_root
+        - name: mediaroot
+          mountPath: /app/web/media_root
+        - name: pylab-logs
+          mountPath: /var/log/pylab
+      volumes:
+      - name: staticroot
+        persistentVolumeClaim:
+          claimName: staticroot-pvc
+      - name: mediaroot
+        persistentVolumeClaim:
+          claimName: mediaroot-pvc
+      - name: pylab-logs
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: django-upylab
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8000
+    targetPort: 8000
+  selector:
+    app: django-upylab
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: staticroot-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mediaroot-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

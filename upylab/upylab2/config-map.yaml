@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+data:
+  POSTGRES_USER: admin
+  POSTGRES_PASSWORD: admin
+  POSTGRES_DB: upylab_db
+  DATABASE_HOST: postgresdb
+  DATABASE_PORT: "5432"
+  # Django settings
+  SECRET_KEY: "qj8nyxnmjo2(jz+1c5i$4)mp6kdmg-:&6_n*y9_8c#r^is1po)"
+  DEBUG: "True"
+  ALLOWED_HOSTS: "*"
+  TIME_ZONE: 'Europe/Brussels'
+
+  # Site configuration
+  SITE_PROTOCOL: http
+  SITE_DOMAIN: upylab2.ulb.ac.be
+  SITE_EMAIL: upylab@ulb.be
+  SITE_EMAIL_PASSWORD: <>
+
+  # Prof signup restricted
+  PROF_SIGNUP_RESTRICTED: "False"
+  PROF_SIGNUP_RESTRICTED_CONTACT_NAME: "UpyLaB"
+  PROF_SIGNUP_RESTRICTED_CONTACT_EMAIL: upylab@ulb.be
+
+  # Backend API connection
+  BKEND_API_SECRET_KEY: helloworld
+  BKEND_API_ADDR_TESTSOLUTION: 35.246.162.144:80/test_solution
+  BKEND_API_ADDR_TESTEXERCISE: 35.246.162.144:80/test_exercice

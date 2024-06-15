@@ -12,5 +12,8 @@ restrict_system_call:
   - open
   - read
 
+# backend-endpoint
+tempdir : /tmp/compilab/
+max_file_mb : 1
 
-deployUpylab2: True
+deployUpylab2 : True

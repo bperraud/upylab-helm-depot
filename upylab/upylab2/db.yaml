@@ -56,6 +56,9 @@ kind: ConfigMap
 metadata:
   name: db-config
 data:
-  POSTGRES_USER: "your_db_user"
-  POSTGRES_PASSWORD: "your_db_password"
-  POSTGRES_DB: "your_db_name"
+  POSTGRES_USER: admin
+  POSTGRES_PASSWORD: admin
+  POSTGRES_DB: upylab_db
+  DATABASE_HOST: postgresdb
+  DATABASE_PORT: "5432"
+

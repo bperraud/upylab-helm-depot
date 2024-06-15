@@ -17,8 +17,8 @@ spec:
         image: ryukenin/upylab-pylab:local
         command: ["gunicorn", "pylab.wsgi:application", "--bind", "0.0.0.0:8000", "--workers=4", "--timeout=120"]
         envFrom:
-        #- configMapRef:
-        #    name: db-config
+          - configMapRef:
+              name: db-config
         ports:
         - containerPort: 8000
         volumeMounts:

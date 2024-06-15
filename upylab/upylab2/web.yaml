@@ -14,11 +14,11 @@ spec:
     spec:
       containers:
       - name: django-upylab
-        image: your-django-image:latest
+        image: ryukenin/upylab-pylab:latest
         command: ["gunicorn", "pylab.wsgi:application", "--bind", "0.0.0.0:8000", "--workers=4", "--timeout=120"]
         envFrom:
-        - configMapRef:
-            name: db-config
+        #- configMapRef:
+        #    name: db-config
         ports:
         - containerPort: 8000
         volumeMounts:

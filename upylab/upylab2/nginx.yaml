@@ -23,8 +23,8 @@ spec:
           mountPath: /app/web/static_root
         - name: mediaroot
           mountPath: /app/web/media_root
-        - name: nginxconf
-          mountPath: /etc/nginx/conf.d
+        #- name: nginxconf
+        #  mountPath: /etc/nginx/conf.d
       volumes:
       - name: staticroot
         persistentVolumeClaim:
@@ -32,9 +32,9 @@ spec:
       - name: mediaroot
         persistentVolumeClaim:
           claimName: mediaroot-pvc
-      - name: nginxconf
-        persistentVolumeClaim:
-          claimName: nginxconf-pvc
+      #- name: nginxconf
+      #  persistentVolumeClaim:
+      #    claimName: nginxconf-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -51,14 +51,14 @@ spec:
     targetPort: 443
   selector:
     app: nginx
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: nginxconf-pvc
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
+#---
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#  name: nginxconf-pvc
+#spec:
+#  accessModes:
+#  - ReadWriteOnce
+#  resources:
+#    requests:
+#      storage: 1Gi

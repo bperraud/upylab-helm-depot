@@ -1,5 +1,4 @@
 
-{{- if .Values.deployFrontend.enabled }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -31,4 +30,3 @@ data:
   BKEND_API_SECRET_KEY: helloworld
   BKEND_API_ADDR_TESTSOLUTION: http://api-service.default.svc.cluster.local:3000/test_solution
   BKEND_API_ADDR_TESTEXERCISE: http://api-service.default.svc.cluster.local:3000/test_exercice
-{{- end }}

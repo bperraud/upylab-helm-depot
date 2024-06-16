@@ -1,0 +1,21 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+    name: shared-pvc
+spec:
+    accessModes:
+      - ReadWriteMany
+    resources:
+        requests:
+            storage: 1Gi
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+    name: filestore-pvc
+spec:
+    accessModes:
+      - ReadWriteMany
+    resources:
+        requests:
+            storage: 1Gi

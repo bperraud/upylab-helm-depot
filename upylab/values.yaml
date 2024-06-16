@@ -5,7 +5,7 @@ cpu_limits: 500m
 memory_limits: 512Mi
 cpu_requests: 200m
 memory_requests : 256Mi
-replica : 2
+replica : 1
 
 restrict_system_call:
   - exit
@@ -16,4 +16,7 @@ restrict_system_call:
 tempdir : /tmp/compilab/
 max_file_mb : 1
 
-deployUpylab2 : True
+
+# frontend
+deployFrontend :
+  enabled: true

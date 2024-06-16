@@ -24,8 +24,8 @@ version: 0.1.0
 appVersion: "1.16.0"
 
 
-dependencies:
-  - name: upylab2
-    version: "1.0.0"
-    condition: .Values.deployUpylab2
-    repository: "upylab2/second-app"
+#dependencies:
+#  - name: upylab2
+#    version: "1.0.0"
+#    condition: .Values.deployUpylab2
+#    repository: "upylab2/second-app"

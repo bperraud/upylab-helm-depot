@@ -5,7 +5,7 @@ metadata:
   labels:
     k8s-app: celery-worker
 spec:
-  replicas: {{ Values.replica }}
+  replicas: {{ .Values.replica }}
 
   selector:
     matchLabels:

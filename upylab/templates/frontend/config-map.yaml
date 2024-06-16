@@ -1,4 +1,5 @@
 
+{{- if .Values.deployFrontend.enabled }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -13,7 +14,7 @@ data:
   SECRET_KEY: "qj8nyxnmjo2(jz+1c5i$4)mp6kdmg-:&6_n*y9_8c#r^is1po)"
   DEBUG: "True"
   ALLOWED_HOSTS: "*"
-  TIME_ZONE: 'Europe/Brussels'
+  TIME_ZONE: {{ .Values.timezone }}
 
   # Site configuration
   SITE_PROTOCOL: http
@@ -30,3 +31,4 @@ data:
   BKEND_API_SECRET_KEY: helloworld
   BKEND_API_ADDR_TESTSOLUTION: http://api-service.default.svc.cluster.local:3000/test_solution
   BKEND_API_ADDR_TESTEXERCISE: http://api-service.default.svc.cluster.local:3000/test_exercice
+{{- end }}

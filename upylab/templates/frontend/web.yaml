@@ -1,3 +1,4 @@
+{{- if .Values.deployFrontend.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -26,7 +27,7 @@ spec:
                 configMapKeyRef:
                   name: db-config
                   key: POSTGRES_USER
-            - name: PGPASSWORD
+            - name: PG_PASSWORD
               valueFrom:
                 configMapKeyRef:
                   name: db-config
@@ -91,3 +92,16 @@ spec:
   resources:
     requests:
       storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: django-upylab-loadbalancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: django-upylab
+  ports:
+    - port: 80
+      targetPort: 8000
+{{- end }}

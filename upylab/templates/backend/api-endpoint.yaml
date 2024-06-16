@@ -44,3 +44,17 @@ spec:
       port: 3000           # port: Port within the cluster where the service is available
       targetPort: 3000     # targetPort: Port on the pods where the service forwards traffic
       nodePort: 30000      # nodePort: Port exposed on each node for external access (if type is NodePort)
+---
+{{- if not .Values.deployFrontend.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-loadbalancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: api
+  ports:
+    - port: 80
+      targetPort: 3000
+{{- end }}

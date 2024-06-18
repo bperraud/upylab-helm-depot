@@ -36,7 +36,7 @@ spec:
       containers:
       - name: django-upylab
         image: ryukenin/upylab-pylab:latest
-        command: ["gunicorn", "pylab.wsgi:application", "--bind", "0.0.0.0:8000", "--workers=4", "--timeout=120"]
+        #command: ["gunicorn", "pylab.wsgi:application", "--bind", "0.0.0.0:8000", "--workers=4", "--timeout=120"]
         envFrom:
           - configMapRef:
               name: db-config
@@ -92,16 +92,4 @@ spec:
   resources:
     requests:
       storage: 1Gi
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: django-upylab-loadbalancer
-spec:
-  type: LoadBalancer
-  selector:
-    app: django-upylab
-  ports:
-    - port: 80
-      targetPort: 8000
 {{- end }}

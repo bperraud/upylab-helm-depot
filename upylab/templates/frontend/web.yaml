@@ -27,7 +27,7 @@ spec:
                 configMapKeyRef:
                   name: db-config
                   key: POSTGRES_USER
-            - name: PG_PASSWORD
+            - name: PGPASSWORD
               valueFrom:
                 configMapKeyRef:
                   name: db-config

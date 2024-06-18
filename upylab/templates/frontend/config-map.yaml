@@ -18,9 +18,9 @@ data:
 
   # Site configuration
   SITE_PROTOCOL: http
-  SITE_DOMAIN: upylab2.ulb.ac.be
-  SITE_EMAIL: upylab@ulb.be
-  SITE_EMAIL_PASSWORD: <>
+  SITE_DOMAIN: {{ .Values.site_domain }}
+  SITE_EMAIL: {{ .Values.site_email }}
+  SITE_EMAIL_PASSWORD: {{ .Values.site_email_password }}
 
   # Prof signup restricted
   PROF_SIGNUP_RESTRICTED: "False"

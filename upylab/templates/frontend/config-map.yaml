@@ -17,10 +17,12 @@ data:
   TIME_ZONE: {{ .Values.timezone }}
 
   # Site configuration
-  SITE_PROTOCOL: http
+  SITE_PROTOCOL: {{ .Values.site_protocol }}
   SITE_DOMAIN: {{ .Values.site_domain }}
   SITE_EMAIL: {{ .Values.site_email }}
   SITE_EMAIL_PASSWORD: {{ .Values.site_email_password }}
+  SITE_EMAIL_HOST: {{ .Values.site_email_host }}
+  SITE_EMAIL_PORT: {{ .Values.site_email_port }}
 
   # Prof signup restricted
   PROF_SIGNUP_RESTRICTED: "False"

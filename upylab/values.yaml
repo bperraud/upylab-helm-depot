@@ -21,10 +21,8 @@ max_file_mb : 1
 deployFrontend :
   enabled: true
 
-
 timezone: 'Europe/Brussels'
 
-site_protocol: http
 site_domain: upylab2.ulb.ac.be
 site_email: upylab@ulb.be
 site_email_password: <>

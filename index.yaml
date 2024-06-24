@@ -9,6 +9,6 @@ entries:
     name: upylab
     type: application
     urls:
-    - https://bperraud.github.io/upylab-helm-depot/upylab/upylab-0.1.0.tgz
+    - https://bperraud.github.io/upylab-helm-depot/upylab-0.1.0.tgz
     version: 0.1.0
 generated: "2024-05-26T16:09:38.96633497+02:00"

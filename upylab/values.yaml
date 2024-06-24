@@ -26,8 +26,8 @@ timezone: 'Europe/Brussels'
 site_domain: upylab2.ulb.ac.be
 site_protocol: http
 site_email: nymano@s19.be
-site_email_password: <>
+site_email_password: "<>"
 site_email_host: smtp.gmail.com
-site_email_port: 587
+site_email_port: "587"
 
 allowed_hosts: '*'

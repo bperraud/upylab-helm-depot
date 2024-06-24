@@ -53,3 +53,6 @@ gcloud container clusters update [CLUSTER_NAME] \
 
 
 nb : activer Kubernetes Engine API
+
+
+update index file : helm repo index --url https://bperraud.github.io/upylab-helm-depot/ .

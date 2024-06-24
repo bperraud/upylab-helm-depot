@@ -44,13 +44,13 @@ spec:
         volumeMounts:
         - mountPath: /tmp/compilab/
           name: filestore
-        - mountPath: /var/lib/kubelet/seccomp/profiles
-          name: data
+        #- mountPath: /var/lib/kubelet/seccomp/profiles
+        #  name: data
 
       volumes:
-      - name: data
-        persistentVolumeClaim:
-          claimName: shared-pvc
+      #- name: data
+      #  persistentVolumeClaim:
+      #    claimName: shared-pvc
       - name: filestore
         persistentVolumeClaim:
           claimName: filestore-pvc

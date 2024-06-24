@@ -14,26 +14,27 @@ spec:
     metadata:
       labels:
         k8s-app: celery-worker
-      #annotations:
-      #  seccomp.security.alpha.kubernetes.io/pod: '{ "defaultAction": "SCMP_ACT_LOG" }'
     spec:
-
-      #initContainers:
-      #  - name: upylab-seccomp
-      #    image: ryukenin/upylab-seccomp:new
-      #    volumeMounts:
-      #      - mountPath: /var/lib/kubelet/seccomp/profiles
-      #        name: data
+      {{- if .Values.seccomp_profile.enabled }}
+      initContainers:
+        - name: upylab-seccomp
+          image: ryukenin/upylab-seccomp:new
+          volumeMounts:
+            - mountPath: /var/lib/kubelet/seccomp/profiles
+              name: data
+      {{- end }}
 
       containers:
       - name: celery-worker
         image: ryukenin/upylab-celery-worker:{{ .Values.python_version }}
         imagePullPolicy: Always
+        {{- if .Values.seccomp_profile.enabled }}
+        securityContext:
+          seccompProfile:
+            type: Localhost
+            localhostProfile: profiles/config.json
+        {{- end }}
 
-        #securityContext:
-        #  seccompProfile:
-        #    type: Localhost
-        #    localhostProfile: profiles/config.json
         resources:
           limits:
             memory: {{ .Values.memory_limits }}
@@ -44,13 +45,17 @@ spec:
         volumeMounts:
         - mountPath: /tmp/compilab/
           name: filestore
-        #- mountPath: /var/lib/kubelet/seccomp/profiles
-        #  name: data
+        {{- if .Values.seccomp_profile.enabled }}
+        - mountPath: /var/lib/kubelet/seccomp/profiles
+          name: data
+        {{- end }}
 
       volumes:
-      #- name: data
-      #  persistentVolumeClaim:
-      #    claimName: shared-pvc
+      {{- if .Values.seccomp_profile.enabled }}
+      - name: data
+        persistentVolumeClaim:
+          claimName: shared-pvc
+      {{- end }}
       - name: filestore
         persistentVolumeClaim:
           claimName: filestore-pvc

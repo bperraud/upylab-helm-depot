@@ -19,7 +19,9 @@ spec:
         image: ryukenin/upylab_api_endpoint:latest
         env:
         - name: tempdir
-          value: "/tmp/compilab"
+          value: {{ .Values.tempdir }}
+        - name: max_file_mb
+          value: {{ .Values.max_file_mb | quote }}
         imagePullPolicy: Always
         ports:
         - containerPort: 3000

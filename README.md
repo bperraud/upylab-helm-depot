@@ -28,11 +28,12 @@ This command configures kubectl to use the newly created cluster.
 7. **Edit configuration file** : If you need to customize you can edit the values.yaml file.
 
 	```bash
-   nano values.yaml
+	helm show values myrepo/upylab > custom-values.yaml
+	nano custom-values.yaml
 8. **Deploy the Helm Release** : Now, you can deploy your Helm release to the Kubernetes cluster.
 
 	```bash
-   helm install <release-name> <repo-name>/upylab -f values.yaml
+   helm install <release-name> <repo-name>/upylab -f custom-values.yaml
 This command configures kubectl to use the newly created cluster.
 
 9. **Verify Deployment** : Check that your application is deployed and running correctly:
@@ -47,3 +48,8 @@ This will show the pods and services deployed in your cluster.
 gcloud container clusters update [CLUSTER_NAME] \
     --update-addons=GcpFilestoreCsiDriver=ENABLED \
     --region=[REGION]
+
+
+
+
+nb : activer Kubernetes Engine API

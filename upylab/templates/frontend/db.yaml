@@ -24,6 +24,7 @@ spec:
         volumeMounts:
         - name: postgresdata
           mountPath: /var/lib/postgresql/data
+          subPath: postgres
       volumes:
       - name: postgresdata
         persistentVolumeClaim:

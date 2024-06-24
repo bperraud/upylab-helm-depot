@@ -21,14 +21,14 @@ To install a Kubernetes cluster on Google Cloud Platform (GCP) and deploy applic
 6. **Add the Helm Repository** : Add the Helm repository where your Helm chart is hosted. If you have already added it previously, you can skip this step.
 
 	```bash
-   helm repo add <repo-name> https://bperraud.github.io/upylab-helm-depot/upylab
+   helm repo add <repo-name> https://bperraud.github.io/upylab-helm-depot/
 This command configures kubectl to use the newly created cluster.
 
 
 7. **Edit configuration file** : If you need to customize you can edit the values.yaml file.
 
 	```bash
-	helm show values myrepo/upylab > custom-values.yaml
+	helm show values <repo-name>/upylab > custom-values.yaml
 	nano custom-values.yaml
 8. **Deploy the Helm Release** : Now, you can deploy your Helm release to the Kubernetes cluster.
 

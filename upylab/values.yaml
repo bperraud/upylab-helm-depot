@@ -7,11 +7,9 @@ cpu_requests: 200m
 memory_requests : 256Mi
 replica : 1
 
-
-
-# frontend
-seccomp-profile :
-  enabled: true
+# seccompp
+seccomp_profile :
+  enabled: false
 
 restrict_system_call:
   - exit
@@ -19,7 +17,7 @@ restrict_system_call:
   - read
 
 # backend-endpoint
-tempdir : /tmp/compilab/
+tempdir : "/tmp/compilab/"
 max_file_mb : 1
 
 

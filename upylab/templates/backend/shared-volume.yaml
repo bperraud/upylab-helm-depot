@@ -1,17 +1,6 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-    name: shared-pvc
-spec:
-    accessModes:
-      - ReadWriteOnce
-    resources:
-        requests:
-            storage: 1Gi
----
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
     name: filestore-pvc
 spec:
     accessModes:
@@ -19,3 +8,15 @@ spec:
     resources:
         requests:
             storage: 1Gi
+{{- if .Values.seccomp_profile.enabled }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+    name: shared-pvc
+spec:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+        requests:
+            storage: 1Gi
+{{- end }}

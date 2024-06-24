@@ -7,6 +7,12 @@ cpu_requests: 200m
 memory_requests : 256Mi
 replica : 1
 
+
+
+# frontend
+seccomp-profile :
+  enabled: true
+
 restrict_system_call:
   - exit
   - open

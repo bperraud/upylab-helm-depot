@@ -29,3 +29,7 @@ appVersion: "1.16.0"
 #    version: "1.0.0"
 #    condition: .Values.deployUpylab2
 #    repository: "upylab2/second-app"
+dependencies:
+  - name: cert-manager
+      version: v1.11.0
+      repository: https://charts.jetstack.io

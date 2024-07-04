@@ -21,4 +21,4 @@ spec:
   tls:
   - hosts:
     - {{ .Values.site_domain }}
-    secretName: your-domain-tls
+    secretName: cert-secret

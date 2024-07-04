@@ -31,5 +31,5 @@ appVersion: "1.16.0"
 #    repository: "upylab2/second-app"
 dependencies:
   - name: cert-manager
-      version: v1.11.0
-      repository: https://charts.jetstack.io
+    version: v1.11.0
+    repository: https://charts.jetstack.io

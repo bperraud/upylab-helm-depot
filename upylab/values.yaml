@@ -27,8 +27,9 @@ deployFrontend :
 
 timezone: 'Europe/Brussels'
 
-site_domain: upylab2.ulb.ac.be
-site_protocol: http
+#site_domain: upylab2.ulb.ac.be
+site_domain: upylab.duckdns.org
+site_protocol: https
 site_email: nymano@s19.be
 site_email_password: "<>"
 site_email_host: smtp.gmail.com

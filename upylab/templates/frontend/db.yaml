@@ -25,6 +25,9 @@ spec:
         - name: postgresdata
           mountPath: /var/lib/postgresql/data
           subPath: postgres
+        resources:
+          requests:
+            memory: {{ .Values.memory }}
       volumes:
       - name: postgresdata
         persistentVolumeClaim:

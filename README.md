@@ -8,16 +8,12 @@ To install a Kubernetes cluster on Google Cloud Platform (GCP) and deploy applic
 
 3. **Set Up Billing and Create a Project**: Ensure that billing is enabled for your Google Cloud account. Create a new project for your Kubernetes cluster.
 
-4. **Create a Kubernetes Cluster**: Use Google Kubernetes Engine (GKE) to create a Kubernetes cluster. You can do this through the Google Cloud Console or using the `gcloud` command-line tool.
+4. **Create a Kubernetes Cluster**: Use Google Kubernetes Engine (GKE) to create a Kubernetes cluster. You can do this through the Google Cloud interface by clicking on create on the cluster tab. Select the appropriate location for your cluster.
 
-   Here's an example command to create a basic cluster with default settings:
-
-   ```bash
-   gcloud container clusters create my-cluster
 5. **Connect to the Cluster** : After the cluster is created, you need to connect to it using kubectl, the Kubernetes command-line tool.
 
 	```bash
-   gcloud container clusters get-credentials my-cluster
+   gcloud container clusters get-credentials <my-cluster> --region <my-region>
 6. **Add the Helm Repository** : Add the Helm repository where your Helm chart is hosted. If you have already added it previously, you can skip this step.
 
 	```bash

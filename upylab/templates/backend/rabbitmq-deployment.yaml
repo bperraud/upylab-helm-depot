@@ -17,6 +17,9 @@ spec:
         image: rabbitmq:latest
         ports:
         - containerPort: 5672  # RabbitMQ default port
+        resources:
+          requests:
+            memory: {{ .Values.memory }}
 ---
 apiVersion: v1
 kind: Service

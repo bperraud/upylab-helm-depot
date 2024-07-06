@@ -14,6 +14,7 @@ spec:
         app: nginx
     spec:
       containers:
+
       - name: nginx
         image: ryukenin/upylab-nginx:latest
         env:
@@ -29,6 +30,9 @@ spec:
           mountPath: /app/web/static_root
         - name: mediaroot
           mountPath: /app/web/media_root
+        resources:
+          requests:
+            memory: {{ .Values.memory }}
       volumes:
       - name: staticroot
         persistentVolumeClaim:

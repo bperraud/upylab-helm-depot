@@ -40,12 +40,9 @@ This command configures kubectl to use the newly created cluster.
 This will show the pods and services deployed in your cluster.
 
 
-
 gcloud container clusters update [CLUSTER_NAME] \
     --update-addons=GcpFilestoreCsiDriver=ENABLED \
     --region=[REGION]
-
-
 
 nb : activer Kubernetes Engine API
 activer helm API ?

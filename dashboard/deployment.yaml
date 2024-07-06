@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubernetes-dashboard
+  namespace: kubernetes-dashboard
+  labels:
+    k8s-app: kubernetes-dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: kubernetes-dashboard
+  template:
+    metadata:
+      labels:
+        k8s-app: kubernetes-dashboard
+    spec:
+      containers:
+      - name: kubernetes-dashboard
+        image: kubernetesui/dashboard:v2.6.0
+        ports:
+        - containerPort: 8443
+          protocol: TCP
+        args:
+          - --auto-generate-certificates
+        volumeMounts:
+        - name: kubernetes-dashboard-certs
+          mountPath: /certs
+        - name: tmp-volume
+          mountPath: /tmp
+        - name: kubernetes-dashboard-csrf  # Ensure this matches the volume name below
+          mountPath: /tmp/kubernetes-dashboard-csrf  # Adjust the mountPath as needed
+          readOnly: true  # Ensure it's marked as readOnly
+      serviceAccountName: admin-user
+      volumes:
+      - name: kubernetes-dashboard-certs
+        emptyDir: {}
+      - name: tmp-volume
+        emptyDir: {}
+      - name: kubernetes-dashboard-csrf
+        secret:
+          secretName: kubernetes-dashboard-csrf

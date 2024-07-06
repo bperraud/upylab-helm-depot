@@ -54,5 +54,27 @@ gcloud container clusters update [CLUSTER_NAME] \
 nb : activer Kubernetes Engine API
 activer helm API ?
 
-newrelease : helm package upylab
-update index file : helm repo index --url https://bperraud.github.io/upylab-helm-depot/ .
+crd-install : kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.7.1/cert-manager.crds.yaml
+
+
+dashboard :
+
+kubectl proxy
+
+Then open the following URL in your browser:
+
+  http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+
+To get the admin user token, run:
+
+  kubectl -n kubernetes-dashboard create token admin-user
+
+
+
+
+secret :
+# Generate a new CSRF token
+CSRF_TOKEN=$(openssl rand -hex 32)
+
+# Create the secret
+kubectl create secret generic kubernetes-dashboard-csrf -n kubernetes-dashboard --from-literal=csrf-token="$CSRF_TOKEN"

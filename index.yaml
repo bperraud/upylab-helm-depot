@@ -3,16 +3,16 @@ entries:
   upylab:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-07-07T19:44:23.799972357+02:00"
+    created: "2024-07-07T22:56:02.124022097+02:00"
     dependencies:
     - name: cert-manager
       repository: https://charts.jetstack.io
       version: v1.13
     description: A Helm chart for Kubernetes
-    digest: ebab67e3a5208587605111bbe5939ca73729ea4369bf34d6cc44bf58df6db713
+    digest: e48466bc50789a01664c127f5f566c916b58312c08193a7450bc7379cd2513da
     name: upylab
     type: application
     urls:
     - https://bperraud.github.io/upylab-helm-depot/upylab-0.1.0.tgz
     version: 0.1.0
-generated: "2024-07-07T19:44:23.796849378+02:00"
+generated: "2024-07-07T22:56:02.121088201+02:00"

@@ -32,9 +32,8 @@ kind: Ingress
 metadata:
   name: ingress
   annotations:
+    kubernetes.io/ingress.spec.ingressClassName: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   rules:
   - host: {{ .Values.site_domain }}

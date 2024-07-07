@@ -44,8 +44,11 @@ gcloud container clusters update [CLUSTER_NAME] \
     --update-addons=GcpFilestoreCsiDriver=ENABLED \
     --region=[REGION]
 
-nb : activer Kubernetes Engine API
-activer helm API ?
+API:
+Kubernetes Engine API
+Certificate Manager API
+HELM API ?
+
 
 crd-install : kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.7.1/cert-manager.crds.yaml
 

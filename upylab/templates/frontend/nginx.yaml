@@ -1,4 +1,4 @@
-{{- if .Values.deployFrontend.enabled }}
+{{ if .Values.deployFrontend.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -45,7 +45,11 @@ kind: Service
 metadata:
   name: nginx
 spec:
+{{ if .Values.deploySSL.enabled }}
+  type: ClusterIP
+{{ else }}
   type: LoadBalancer
+{{ end }}
   ports:
   - name: http
     port: 80
@@ -55,4 +59,4 @@ spec:
     targetPort: 443
   selector:
     app: nginx
-{{- end }}
+{{ end }}

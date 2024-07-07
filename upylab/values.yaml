@@ -28,7 +28,7 @@ deployFrontend :
 memory: 200Mi
 
 deploySSL :
-  enabled: false
+  enabled: true
 
 timezone: 'Europe/Brussels'
 

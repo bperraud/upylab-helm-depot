@@ -74,3 +74,15 @@ CSRF_TOKEN=$(openssl rand -hex 32)
 
 # Create the secret
 kubectl create secret generic kubernetes-dashboard-csrf -n kubernetes-dashboard --from-literal=csrf-token="$CSRF_TOKEN"
+
+
+
+to activate API :
+
+
+get credentials :
+gcloud auth login
+
+activate api :
+gcloud services enable certificatemanager.googleapis.com --project=YOUR_PROJECT_ID
+

@@ -45,11 +45,7 @@ kind: Service
 metadata:
   name: nginx
 spec:
-{{ if .Values.deploySSL.enabled }}
-  type: ClusterIP
-{{ else }}
   type: LoadBalancer
-{{ end }}
   ports:
   - name: http
     port: 80

@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+  annotations:
+    kubernetes.io/ingress.allow-http: "true"
+    kubernetes.io/spec.ingressClassName: "gce"
+    networking.gke.io/managed-certificates: upylab-certificate
+    kubernetes.io/ingress.global-static-ip-name: "my-static-ip"
+spec:
+  rules:
+    - host: {{ .Values.site_domain }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx
+                port:
+                  number: 80

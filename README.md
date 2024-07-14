@@ -14,50 +14,47 @@ To install a Kubernetes cluster on Google Cloud Platform (GCP) and deploy applic
 
 	```bash
    gcloud container clusters get-credentials <my-cluster> --region <my-region>
-6. **Add the Helm Repository** : Add the Helm repository where your Helm chart is hosted. If you have already added it previously, you can skip this step.
+6. **Create Static IP** : gcloud compute addresses create my-static-ip --global
 
 	```bash
-   helm repo add <repo-name> https://bperraud.github.io/upylab-helm-depot/
-This command configures kubectl to use the newly created cluster.
+	gcloud compute addresses describe ADDRESS_NAME --global
+7. **Edit you DNS** : Configure the DNS records for your domains to point to your IP address. To find the static IP address you created, run the following command:
 
+	```bash
+	gcloud compute addresses describe ADDRESS_NAME --global
+8. **Add the Helm Repository** : Add the Helm repository where your Helm chart is hosted.
 
-7. **Edit configuration file** : If you need to customize you can edit the values.yaml file.
+	```bash
+	helm repo add <repo-name> https://bperraud.github.io/upylab-helm-depot/
+9. **Edit configuration file** : Edit the values.yaml file for your specific needs :
 
 	```bash
 	helm show values <repo-name>/upylab > custom-values.yaml
 	nano custom-values.yaml
-8. **Deploy the Helm Release** : Now, you can deploy your Helm release to the Kubernetes cluster.
+10. **Deploy the Helm Release** : Now, you can deploy your Helm release to the Kubernetes cluster.
 
 	```bash
-   helm install <release-name> <repo-name>/upylab -f custom-values.yaml
-This command configures kubectl to use the newly created cluster.
-
-9. **Verify Deployment** : Check that your application is deployed and running correctly:
+	helm install <release-name> <repo-name>/upylab -f custom-values.yaml
+11. **Verify Deployment** : Check that your application is deployed and running correctly:
 
 	```bash
-   kubectl get pods
-   kubectl get services
-This will show the pods and services deployed in your cluster.
+	kubectl get all
 
+12. Wait for the Google-managed certificate to finish provisioning for the https access. This might take up to 60 minutes. You can check the status of the certificate using the following command:
+
+	```bash
+	kubectl describe managedcertificate managed-cert
+
+---
 
 gcloud container clusters update [CLUSTER_NAME] \
     --update-addons=GcpFilestoreCsiDriver=ENABLED \
     --region=[REGION]
 
-
-
-
-10. **Create Static IP** : gcloud compute addresses create my-static-ip --global
-
-
 API:
 Kubernetes Engine API
 Certificate Manager API
 HELM API ?
-
-
-crd-install : kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.7.1/cert-manager.crds.yaml
-
 
 dashboard :
 
@@ -70,9 +67,6 @@ Then open the following URL in your browser:
 To get the admin user token, run:
 
   kubectl -n kubernetes-dashboard create token admin-user
-
-
-
 
 secret :
 # Generate a new CSRF token

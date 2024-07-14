@@ -44,6 +44,12 @@ gcloud container clusters update [CLUSTER_NAME] \
     --update-addons=GcpFilestoreCsiDriver=ENABLED \
     --region=[REGION]
 
+
+
+
+10. **Create Static IP** : gcloud compute addresses create my-static-ip --global
+
+
 API:
 Kubernetes Engine API
 Certificate Manager API

@@ -3,8 +3,8 @@ kind: Ingress
 metadata:
   name: my-ingress
   annotations:
-    #kubernetes.io/ingress.allow-http: "true"
     #ingress.kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ingress.allow-http: "true"
     kubernetes.io/spec.ingressClassName: "gce"
     networking.gke.io/managed-certificates: upylab-certificate
     kubernetes.io/ingress.global-static-ip-name: "static-ip"

@@ -26,15 +26,15 @@ deployFrontend :
   enabled: true
 
 
-affinityS1:
+affinityS2:
   podAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:
     - labelSelector:
         matchExpressions:
-          - key: security
-            operator: In
-            values:
-              - S1
+        - key: security
+          operator: In
+          values:
+          - S1
       topologyKey: "kubernetes.io/hostname"
 
 
@@ -43,10 +43,10 @@ affinityS2:
     requiredDuringSchedulingIgnoredDuringExecution:
     - labelSelector:
         matchExpressions:
-          - key: security
-            operator: In
-            values:
-              - S2
+        - key: security
+          operator: In
+          values:
+          - S2
       topologyKey: "kubernetes.io/hostname"
 
 

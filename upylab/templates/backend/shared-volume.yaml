@@ -4,7 +4,7 @@ metadata:
     name: filestore-pvc
 spec:
     accessModes:
-      - ReadWriteOnce
+      - ReadWriteMany
     resources:
         requests:
             storage: 1Gi
@@ -15,7 +15,7 @@ metadata:
     name: shared-pvc
 spec:
     accessModes:
-      - ReadWriteOnce
+      - ReadWriteMany
     resources:
         requests:
             storage: 1Gi

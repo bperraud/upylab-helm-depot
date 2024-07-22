@@ -25,7 +25,6 @@ spec:
                 - api-node
             topologyKey: "kubernetes.io/hostname"
 
-
       containers:
       - name: api
         image: ryukenin/upylab_api_endpoint:latest
@@ -43,11 +42,11 @@ spec:
 
         resources:
         limits:
-          memory: {{ .Values.memory_limits }}
-          cpu: {{ .Values.cpu_limits }}
+          memory: 256Mi
+          cpu: 250m
         requests:
-          memory: {{ .Values.memory_limits }}
-          cpu: {{ .Values.cpu_limits }}
+          memory: 256Mi
+          cpu: 250m
 
 
       volumes:

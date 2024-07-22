@@ -16,7 +16,16 @@ spec:
         k8s-app: celery-worker
     spec:
       affinity:
-        {{ toYaml .Values.affinityS1 | indent 6 }}
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: security
+                operator: In
+                values:
+                - S1
+            topologyKey: "kubernetes.io/hostname"
+
       {{- if .Values.seccomp_profile.enabled }}
       initContainers:
         - name: upylab-seccomp

@@ -8,7 +8,7 @@ spec:
   replicas: 1
 
   affinity:
-    {{ toYaml .Values.affinityS1 | indent 5 }}
+    {{ toYaml .Values.affinityS1 | indent 6 }}
 
   selector:
     matchLabels:

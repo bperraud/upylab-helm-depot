@@ -7,6 +7,9 @@ metadata:
 spec:
   replicas: {{ .Values.replica }}
 
+  affinity:
+    {{ toYaml .Values.affinityS1 | indent 5 }}
+
   selector:
     matchLabels:
       k8s-app: celery-worker
@@ -15,17 +18,6 @@ spec:
       labels:
         k8s-app: celery-worker
     spec:
-      affinity:
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: security
-                operator: In
-                values:
-                - S1
-            topologyKey: "kubernetes.io/hostname"
-
       {{- if .Values.seccomp_profile.enabled }}
       initContainers:
         - name: upylab-seccomp

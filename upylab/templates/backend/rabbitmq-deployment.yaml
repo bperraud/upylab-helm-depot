@@ -4,6 +4,10 @@ metadata:
   name: rabbitmq
 spec:
   replicas: 1
+
+  affinity:
+    {{ toYaml .Values.affinityS1 | indent 5 }}
+
   selector:
     matchLabels:
       app: rabbitmq
@@ -12,10 +16,6 @@ spec:
       labels:
         app: rabbitmq
     spec:
-
-      affinity:
-        {{ toYaml .Values.affinityS2 | indent 6 }}
-
       containers:
       - name: rabbitmq
         image: rabbitmq:latest

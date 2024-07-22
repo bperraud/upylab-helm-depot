@@ -14,7 +14,16 @@ spec:
         app: redis-upylab
     spec:
       affinity:
-        {{ toYaml .Values.affinityS2 | indent 6 }}
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: "app"
+                operator: In
+                values:
+                - s2
+            topologyKey: "kubernetes.io/hostname"
+
       containers:
       - name: redis
         image: redis:latest

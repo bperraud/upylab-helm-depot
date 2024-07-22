@@ -13,6 +13,7 @@ spec:
       labels:
         app: redis-upylab
     spec:
+      affinity: {{ toYaml .Values.affinityS2 | indent 6 }}
       containers:
       - name: redis
         image: redis:latest

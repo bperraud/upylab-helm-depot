@@ -12,6 +12,9 @@ spec:
       labels:
         app: rabbitmq
     spec:
+
+      affinity: {{ toYaml .Values.affinityS2 | indent 6 }}
+
       containers:
       - name: rabbitmq
         image: rabbitmq:latest

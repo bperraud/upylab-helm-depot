@@ -45,6 +45,10 @@ spec:
         limits:
           memory: {{ .Values.memory_limits }}
           cpu: {{ .Values.cpu_limits }}
+        requests:
+          memory: {{ .Values.memory_limits }}
+          cpu: {{ .Values.cpu_limits }}
+
 
       volumes:
       - name: filestore

@@ -4,26 +4,36 @@ kind: Deployment
 metadata:
   name: django-upylab
   labels:
-    k8s-app: api-node
+    k8s-app: front-node
 spec:
   replicas: 1
   selector:
     matchLabels:
-      k8s-app: api-node
+      k8s-app: front-node
   template:
     metadata:
       labels:
-        k8s-app: api-node
+        k8s-app: front-node
     spec:
       affinity:
-        podAntiAffinity:
+        #podAntiAffinity:
+        #  requiredDuringSchedulingIgnoredDuringExecution:
+        #  - labelSelector:
+        #      matchExpressions:
+        #      - key: k8s-app
+        #        operator: In
+        #        values:
+        #        - api-node
+        #    topologyKey: "kubernetes.io/hostname"
+
+        podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
               - key: k8s-app
                 operator: In
                 values:
-                - api-node
+                - front-node
             topologyKey: "kubernetes.io/hostname"
 
       initContainers:

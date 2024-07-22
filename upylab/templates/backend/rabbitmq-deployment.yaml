@@ -14,7 +14,17 @@ spec:
     spec:
 
       affinity:
-        podAntiAffinity:
+        #podAntiAffinity:
+        #  requiredDuringSchedulingIgnoredDuringExecution:
+        #  - labelSelector:
+        #      matchExpressions:
+        #      - key: k8s-app
+        #        operator: In
+        #        values:
+        #        - api-node
+        #        - front-node
+        #    topologyKey: "kubernetes.io/hostname"
+        podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
@@ -22,7 +32,6 @@ spec:
                 operator: In
                 values:
                 - api-node
-                - front-node
             topologyKey: "kubernetes.io/hostname"
 
       containers:

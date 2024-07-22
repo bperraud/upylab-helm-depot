@@ -15,7 +15,15 @@ spec:
     spec:
 
       affinity:
-        {{ toYaml .Values.affinityS1 | indent 6 }}
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: "app"
+                operator: In
+                values:
+                - tomcat
+            topologyKey: "kubernetes.io/hostname"
 
       initContainers:
         - name: wait-for-postgres

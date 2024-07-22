@@ -2,27 +2,31 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis-upylab
+  labels:
+    k8s-app: api-node
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: redis-upylab
+      k8s-app: api-node
   template:
     metadata:
       labels:
         app: redis-upylab
+        k8s-app: api-node
     spec:
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: k8s-app
-                operator: In
-                values:
-                - api-node
-                - front-node
-            topologyKey: "kubernetes.io/hostname"
+      #affinity:
+      #  podAntiAffinity:
+      #    requiredDuringSchedulingIgnoredDuringExecution:
+      #    - labelSelector:
+      #        matchExpressions:
+      #        - key: k8s-app
+      #          operator: In
+      #          values:
+      #          - api-node
+      #          - front-node
+      #      topologyKey: "kubernetes.io/hostname"
 
       containers:
       - name: redis
@@ -32,7 +36,7 @@ spec:
         resources:
           requests:
             memory: {{ .Values.memory }}
-            cpu: 500m
+            cpu: 250m
 ---
 apiVersion: v1
 kind: Service

@@ -24,6 +24,7 @@ spec:
                 operator: In
                 values:
                 - api-node
+                - back-node
             topologyKey: "kubernetes.io/hostname"
 
         podAffinity:

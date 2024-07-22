@@ -3,15 +3,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: django-upylab
+  labels:
+    k8s-app: api-node
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: django-upylab
+      k8s-app: api-node
   template:
     metadata:
       labels:
-        app: django-upylab
+        k8s-app: api-node
     spec:
 
       affinity:
@@ -19,10 +21,10 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
-              - key: "app"
+              - key: k8s-app
                 operator: In
                 values:
-                - tomcat
+                - api-node
             topologyKey: "kubernetes.io/hostname"
 
       initContainers:

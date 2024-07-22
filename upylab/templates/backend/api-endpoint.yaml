@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: api-deployment
   labels:
-    k8s-app: api-node
+    k8s-app: back-node
 spec:
   replicas: 1
   selector:
     matchLabels:
-      k8s-app: api-node
+      k8s-app: back-node
   template:
     metadata:
       labels:
-        k8s-app: api-node
+        k8s-app: back-node
     spec:
       affinity:
         podAffinity:
@@ -22,6 +22,7 @@ spec:
               - key: k8s-app
                 operator: In
                 values:
+                - back-node
                 - api-node
             topologyKey: "kubernetes.io/hostname"
 

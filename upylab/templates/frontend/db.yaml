@@ -3,6 +3,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgresdb
+  labels:
+    k8s-app: api-node
 spec:
   replicas: 1
   selector:
@@ -14,16 +16,16 @@ spec:
         app: postgresdb
     spec:
 
-      affinity:
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: k8s-app
-                operator: In
-                values:
-                - front-node
-            topologyKey: "kubernetes.io/hostname"
+      #affinity:
+      #  podAffinity:
+      #    requiredDuringSchedulingIgnoredDuringExecution:
+      #    - labelSelector:
+      #        matchExpressions:
+      #        - key: k8s-app
+      #          operator: In
+      #          values:
+      #          - front-node
+      #      topologyKey: "kubernetes.io/hostname"
 
       containers:
       - name: postgresdb

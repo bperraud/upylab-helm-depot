@@ -15,7 +15,16 @@ spec:
         app: api
     spec:
       affinity:
-        {{ toYaml .Values.affinityS1 | indent 5 }}
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: security
+                operator: In
+                values:
+                - S1
+            topologyKey: "kubernetes.io/hostname"
+
       containers:
       - name: api
         image: ryukenin/upylab_api_endpoint:latest

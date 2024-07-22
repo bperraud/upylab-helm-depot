@@ -16,17 +16,17 @@ spec:
         app: redis-upylab
         k8s-app: api-node
     spec:
-      #affinity:
-      #  podAntiAffinity:
-      #    requiredDuringSchedulingIgnoredDuringExecution:
-      #    - labelSelector:
-      #        matchExpressions:
-      #        - key: k8s-app
-      #          operator: In
-      #          values:
-      #          - api-node
-      #          - front-node
-      #      topologyKey: "kubernetes.io/hostname"
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: k8s-app
+                operator: In
+                values:
+                - back-node
+                - front-node
+            topologyKey: "kubernetes.io/hostname"
 
       containers:
       - name: redis
@@ -36,7 +36,7 @@ spec:
         resources:
           requests:
             memory: {{ .Values.memory }}
-            cpu: 250m
+            cpu: 500m
 ---
 apiVersion: v1
 kind: Service

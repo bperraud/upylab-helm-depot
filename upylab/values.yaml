@@ -1,8 +1,8 @@
 
 # worker configuration
 python_version: "3.10"
-cpu_limits: 500m
-memory_limits: 512Mi
+cpu_limits: 200m
+memory_limits: 256Mi
 cpu_requests: 200m
 memory_requests : 256Mi
 replica : 1

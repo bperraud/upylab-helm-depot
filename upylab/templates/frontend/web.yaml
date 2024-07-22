@@ -23,8 +23,8 @@ spec:
               - key: k8s-app
                 operator: In
                 values:
-                - api-node
                 - back-node
+                - api-node
             topologyKey: "kubernetes.io/hostname"
 
         podAffinity:

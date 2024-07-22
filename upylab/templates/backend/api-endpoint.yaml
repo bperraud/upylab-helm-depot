@@ -40,6 +40,12 @@ spec:
         volumeMounts:
         - mountPath: /tmp/compilab/
           name: filestore
+
+        resources:
+        limits:
+          memory: {{ .Values.memory_limits }}
+          cpu: {{ .Values.cpu_limits }}
+
       volumes:
       - name: filestore
         persistentVolumeClaim:

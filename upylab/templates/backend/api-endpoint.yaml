@@ -4,15 +4,18 @@ metadata:
   name: api-deployment
   labels:
     k8s-app: back-node
+    app: api
 spec:
   replicas: 1
   selector:
     matchLabels:
       k8s-app: back-node
+      app: api
   template:
     metadata:
       labels:
         k8s-app: back-node
+        app: api
     spec:
       affinity:
         podAffinity:

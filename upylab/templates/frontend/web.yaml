@@ -13,10 +13,6 @@ spec:
       labels:
         app: django-upylab
     spec:
-      tolerations:
-      - key: TAINT_KEY
-        operator: Equal
-        value: TAINT_VALUE
 
       affinity: {{ toYaml .Values.affinityS1 | indent 6 }}
 

@@ -16,7 +16,8 @@ spec:
         k8s-app: celery-worker
     spec:
 
-      affinity: {{ toYaml .Values.affinityS1 | indent 6 }}
+      affinity:
+        {{ toYaml .Values.affinityS1 | indent 6 }}
 
       {{- if .Values.seccomp_profile.enabled }}
       initContainers:

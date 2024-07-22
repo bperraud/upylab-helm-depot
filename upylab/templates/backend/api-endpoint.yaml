@@ -16,15 +16,7 @@ spec:
     spec:
 
       affinity:
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: security
-                operator: In
-                values:
-                - S1
-            topologyKey: "kubernetes.io/hostname"
+        {{ toYaml .Values.affinityS1 | indent 6 }}
 
       containers:
       - name: api

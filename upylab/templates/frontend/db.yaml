@@ -13,6 +13,9 @@ spec:
       labels:
         app: postgresdb
     spec:
+
+      affinity: {{ toYaml .Values.affinityS2 | indent 6 }}
+
       containers:
       - name: postgresdb
         image: postgres:13.3

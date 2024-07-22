@@ -17,16 +17,8 @@ spec:
       - key: TAINT_KEY
         operator: Equal
         value: TAINT_VALUE
-      affinity:
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                  - key: security
-                    operator: In
-                    values:
-                      - S1
-              topologyKey: "kubernetes.io/hostname"
+
+      affinity: {{ toYaml .Values.affinityS1 | indent 6 }}
 
       initContainers:
         - name: wait-for-postgres

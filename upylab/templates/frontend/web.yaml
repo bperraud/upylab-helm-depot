@@ -14,7 +14,8 @@ spec:
         app: django-upylab
     spec:
 
-      affinity: {{ toYaml .Values.affinityS1 | indent 6 }}
+      affinity:
+        {{ toYaml .Values.affinityS1 | indent 6 }}
 
       initContainers:
         - name: wait-for-postgres

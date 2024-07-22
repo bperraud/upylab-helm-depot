@@ -15,7 +15,7 @@ spec:
         app: api
     spec:
       affinity:
-        {{ toYaml .Values.affinityS1 | indent 7 }}
+        {{ toYaml .Values.affinityS1 | indent 5 }}
       containers:
       - name: api
         image: ryukenin/upylab_api_endpoint:latest

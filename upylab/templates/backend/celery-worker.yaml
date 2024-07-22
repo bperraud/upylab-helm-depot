@@ -16,14 +16,14 @@ spec:
         k8s-app: celery-worker
     spec:
       affinity:
-        podAffinity:
+        podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
-              - key: security
+              - key: "app"
                 operator: In
                 values:
-                - S1
+                - tomcat
             topologyKey: "kubernetes.io/hostname"
 
       {{- if .Values.seccomp_profile.enabled }}

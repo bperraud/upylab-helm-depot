@@ -26,6 +26,16 @@ spec:
                 - api-node
             topologyKey: "kubernetes.io/hostname"
 
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: k8s-app
+                operator: In
+                values:
+                - front-node
+            topologyKey: "kubernetes.io/hostname"
+
       {{- if .Values.seccomp_profile.enabled }}
       initContainers:
         - name: upylab-seccomp

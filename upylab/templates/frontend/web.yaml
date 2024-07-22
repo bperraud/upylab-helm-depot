@@ -10,10 +10,12 @@ spec:
   selector:
     matchLabels:
       k8s-app: front-node
+      app: django-upylab
   template:
     metadata:
       labels:
         k8s-app: front-node
+        app: django-upylab
     spec:
       affinity:
         podAntiAffinity:

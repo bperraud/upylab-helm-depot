@@ -6,6 +6,10 @@ metadata:
     app: api
 spec:
   replicas: 1
+
+  affinity:
+    {{ toYaml .Values.affinityS1 | indent 5 }}
+
   selector:
     matchLabels:
       app: api
@@ -14,17 +18,6 @@ spec:
       labels:
         app: api
     spec:
-      affinity:
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: security
-                operator: In
-                values:
-                - S1
-            topologyKey: "kubernetes.io/hostname"
-
       containers:
       - name: api
         image: ryukenin/upylab_api_endpoint:latest

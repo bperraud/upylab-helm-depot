@@ -13,7 +13,8 @@ spec:
       labels:
         app: nginx
     spec:
-      affinity: {{ toYaml .Values.affinityS2 | indent 6 }}
+      affinity:
+        {{ toYaml .Values.affinityS2 | indent 6 }}
 
       containers:
       - name: nginx

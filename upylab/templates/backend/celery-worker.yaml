@@ -3,27 +3,27 @@ kind: Deployment
 metadata:
   name: celery-worker
   labels:
-    k8s-app: celery-worker
+    k8s-app: api-node
 spec:
   replicas: {{ .Values.replica }}
 
   selector:
     matchLabels:
-      k8s-app: celery-worker
+      k8s-app: api-node
   template:
     metadata:
       labels:
-        k8s-app: celery-worker
+        k8s-app: api-node
     spec:
       affinity:
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
-              - key: "app"
+              - key: k8s-app
                 operator: In
                 values:
-                - tomcat
+                - api-node
             topologyKey: "kubernetes.io/hostname"
 
       {{- if .Values.seccomp_profile.enabled }}

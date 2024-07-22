@@ -3,26 +3,26 @@ kind: Deployment
 metadata:
   name: api-deployment
   labels:
-    app: api
+    k8s-app: api-node
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: api
+      k8s-app: api-node
   template:
     metadata:
       labels:
-        app: api
+        k8s-app: api-node
     spec:
       affinity:
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
-              - key: "app"
+              - key: k8s-app
                 operator: In
                 values:
-                - tomcat
+                - api-node
             topologyKey: "kubernetes.io/hostname"
 
 

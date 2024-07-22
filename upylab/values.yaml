@@ -26,7 +26,7 @@ deployFrontend :
   enabled: true
 
 
-affinityS2:
+affinityS1:
   podAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:
     - labelSelector:

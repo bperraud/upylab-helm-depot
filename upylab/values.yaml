@@ -50,7 +50,7 @@ affinityS2:
       topologyKey: "kubernetes.io/hostname"
 
 
-memory: 200Mi
+memory: 500m
 
 deploySSL :
   enabled: true

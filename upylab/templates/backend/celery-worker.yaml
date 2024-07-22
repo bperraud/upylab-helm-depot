@@ -16,7 +16,7 @@ spec:
         k8s-app: celery-worker
     spec:
       affinity:
-        podAntiAffinity:
+        podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:

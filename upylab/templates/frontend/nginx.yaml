@@ -19,15 +19,15 @@ spec:
         app: nginx
     spec:
       affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: k8s-app
-                operator: In
-                values:
-                - api-node
-            topologyKey: "kubernetes.io/hostname"
+        #podAntiAffinity:
+        #  requiredDuringSchedulingIgnoredDuringExecution:
+        #  - labelSelector:
+        #      matchExpressions:
+        #      - key: k8s-app
+        #        operator: In
+        #        values:
+        #        - api-node
+        #    topologyKey: "kubernetes.io/hostname"
 
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -58,7 +58,7 @@ spec:
         resources:
           requests:
             memory: {{ .Values.memory }}
-            cpu: 500m
+            cpu: 200m
       volumes:
       - name: staticroot
         persistentVolumeClaim:

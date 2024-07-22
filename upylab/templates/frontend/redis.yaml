@@ -13,7 +13,16 @@ spec:
       labels:
         app: redis-upylab
     spec:
-
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: k8s-app
+                operator: In
+                values:
+                - api-node
+            topologyKey: "kubernetes.io/hostname"
 
       containers:
       - name: redis

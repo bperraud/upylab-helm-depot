@@ -14,10 +14,11 @@ To install a Kubernetes cluster on Google Cloud Platform (GCP) and deploy applic
 
 	```bash
    gcloud container clusters get-credentials <my-cluster> --region <my-region>
-6. **Create Static IP** : gcloud compute addresses create my-static-ip --global
+6. **Create Static IP** :
 
 	```bash
-	gcloud compute addresses describe ADDRESS_NAME --global
+	gcloud compute addresses create static-ip --global
+	gcloud compute addresses describe static-ip --global
 7. **Edit you DNS** : Configure the DNS records for your domains to point to your IP address. To find the static IP address you created, run the following command:
 
 	```bash

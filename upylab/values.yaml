@@ -29,25 +29,25 @@ deployFrontend :
 affinityS1:
   podAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchExpressions:
-            - key: security
-              operator: In
-              values:
-                - S1
-        topologyKey: "kubernetes.io/hostname"
+    - labelSelector:
+        matchExpressions:
+          - key: security
+            operator: In
+            values:
+              - S1
+      topologyKey: "kubernetes.io/hostname"
 
 
 affinityS2:
   podAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchExpressions:
-            - key: security
-              operator: In
-              values:
-                - S2
-        topologyKey: "kubernetes.io/hostname"
+    - labelSelector:
+        matchExpressions:
+          - key: security
+            operator: In
+            values:
+              - S2
+      topologyKey: "kubernetes.io/hostname"
 
 
 memory: 200Mi

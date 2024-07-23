@@ -52,8 +52,11 @@ spec:
           subPath: postgres
         resources:
           requests:
-            memory: {{ .Values.memory }}
+            memory: 500Mi
             cpu: 500m
+          limits:
+            memory: 1000Mi
+            cpu: 800m
       volumes:
       - name: postgresdata
         persistentVolumeClaim:
@@ -80,5 +83,5 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 10Gi
 {{ end }}

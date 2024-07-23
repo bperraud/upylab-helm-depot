@@ -28,6 +28,16 @@ spec:
                 - back-node
             topologyKey: "kubernetes.io/hostname"
 
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: k8s-app
+                operator: In
+                values:
+                - api-node
+            topologyKey: "kubernetes.io/hostname"
+
       containers:
       - name: postgresdb
         image: postgres:13.3

@@ -28,6 +28,16 @@ spec:
                 - front-node
             topologyKey: "kubernetes.io/hostname"
 
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: k8s-app
+                operator: In
+                values:
+                - api-node
+            topologyKey: "kubernetes.io/hostname"
+
       containers:
       - name: redis
         image: redis:latest

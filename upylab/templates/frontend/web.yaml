@@ -59,6 +59,15 @@ spec:
                   name: db-config
                   key: POSTGRES_PASSWORD
           command: ['sh', '-c', 'until psql -h $PG_HOST -U $PG_USER -d postgres -c "SELECT 1" >/dev/null 2>&1; do sleep 1; done;']
+
+          resources:
+            requests:
+              memory: 50Mi
+              cpu: 100m
+            limits:
+              memory: 100Mi
+              cpu: 200m
+
       containers:
       - name: django-upylab
         image: ryukenin/upylab-pylab:latest

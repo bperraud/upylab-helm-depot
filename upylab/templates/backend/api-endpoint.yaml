@@ -17,16 +17,7 @@ spec:
         k8s-app: back-node
         app: api
     spec:
-      affinity:
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: k8s-app
-                operator: In
-                values:
-                - back-node
-            topologyKey: "kubernetes.io/hostname"
+      tolerations: {{ .Values.back-affinity | nindent 6}}
 
       containers:
       - name: api

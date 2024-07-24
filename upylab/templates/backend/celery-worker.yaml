@@ -18,27 +18,9 @@ spec:
         k8s-app: back-node
         app: celery-worker
     spec:
-      affinity:
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: k8s-app
-                operator: In
-                values:
-                - back-node
-            topologyKey: "kubernetes.io/hostname"
+      runtimeClassName: gvisor  # run pod in gke sandox
 
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: k8s-app
-                operator: In
-                values:
-                - front-node
-                - api-node
-            topologyKey: "kubernetes.io/hostname"
+      tolerations: {{ .Values.back-affinity | nindent 6}}
 
       {{- if .Values.seccomp_profile.enabled }}
       initContainers:

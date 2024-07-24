@@ -38,6 +38,39 @@ affinityS1:
       topologyKey: "kubernetes.io/hostname"
 
 
+
+front-affinity :
+  tolerations:
+  - key: affinity-taint
+    operator: Equal
+    value: front-end
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: affinity-label
+            operator: In
+            values:
+            - front-end
+
+
+back-affinity :
+  tolerations:
+  - key: affinity-taint
+    operator: Equal
+    value: back-end
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: affinity-label
+            operator: In
+            values:
+            - back-end
+
+
 affinityS2:
   podAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:

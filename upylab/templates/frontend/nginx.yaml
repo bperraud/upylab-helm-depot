@@ -18,27 +18,7 @@ spec:
         k8s-app: front-node
         app: nginx
     spec:
-      affinity:
-        #podAntiAffinity:
-        #  requiredDuringSchedulingIgnoredDuringExecution:
-        #  - labelSelector:
-        #      matchExpressions:
-        #      - key: k8s-app
-        #        operator: In
-        #        values:
-        #        - api-node
-        #        - back-node
-        #    topologyKey: "kubernetes.io/hostname"
-
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: k8s-app
-                operator: In
-                values:
-                - front-node
-            topologyKey: "kubernetes.io/hostname"
+      tolerations: {{ .Values.front-affinity | nindent 6 }}
 
       containers:
       - name: nginx
@@ -59,7 +39,10 @@ spec:
         resources:
           requests:
             memory: {{ .Values.memory }}
-            cpu: 250m
+            cpu: 100m
+          limits:
+            memory: {{ .Values.memory }}
+            cpu: 200m
       volumes:
       - name: staticroot
         persistentVolumeClaim:

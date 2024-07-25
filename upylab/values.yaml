@@ -31,6 +31,7 @@ frontAffinity :
   - key: affinity-taint
     operator: Equal
     value: front-end
+    effect: NoSchedule
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -46,6 +47,7 @@ backAffinity :
   - key: affinity-taint
     operator: Equal
     value: back-end
+    effect: NoSchedule
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:

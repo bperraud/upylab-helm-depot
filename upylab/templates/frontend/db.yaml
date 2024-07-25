@@ -16,7 +16,7 @@ spec:
         app: postgresdb
     spec:
 
-      {{ toYaml .Values.front-affinity | nindent 6 }}
+      {{- toYaml .Values.front-affinity | nindent 6 }}
 
       containers:
       - name: postgresdb

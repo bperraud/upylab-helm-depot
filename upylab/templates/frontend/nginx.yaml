@@ -18,8 +18,20 @@ spec:
         k8s-app: front-node
         app: nginx
     spec:
-      {{- toYaml .Values.front-affinity | nindent 6 }}
 
+      tolerations:
+      - key: affinity-taint
+        operator: Equal
+        value: front-end
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: affinity-label
+                operator: In
+                values:
+                - front-end
       containers:
       - name: nginx
         image: ryukenin/upylab-nginx:latest

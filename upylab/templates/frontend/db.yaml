@@ -37,11 +37,11 @@ spec:
           subPath: postgres
         resources:
           requests:
-            memory: 1032Mi
+            memory: 512Mi
             cpu: 500m
           limits:
-            memory: 2064Mi
-            cpu: 1000m
+            memory: 1024Mi
+            cpu: 600m
       volumes:
       - name: postgresdata
         persistentVolumeClaim:

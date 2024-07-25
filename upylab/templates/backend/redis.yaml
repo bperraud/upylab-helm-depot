@@ -16,7 +16,7 @@ spec:
         app: redis-upylab
         k8s-app: api-node
     spec:
-      tolerations: {{ .Values.front-affinity | nindent 6 }}
+      {{ toYaml .Values.front-affinity | nindent 6 }}
 
       containers:
       - name: redis

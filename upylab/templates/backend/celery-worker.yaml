@@ -20,7 +20,7 @@ spec:
     spec:
       runtimeClassName: gvisor  # run pod in gke sandox
 
-      tolerations: {{ .Values.back-affinity | nindent 6}}
+      {{ toYaml .Values.back-affinity | nindent 6 }}
 
       {{- if .Values.seccomp_profile.enabled }}
       initContainers:

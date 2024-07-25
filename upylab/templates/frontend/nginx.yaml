@@ -18,7 +18,7 @@ spec:
         k8s-app: front-node
         app: nginx
     spec:
-      tolerations: {{ .Values.front-affinity | nindent 6 }}
+      {{ toYaml .Values.front-affinity | nindent 6 }}
 
       containers:
       - name: nginx

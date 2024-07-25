@@ -26,19 +26,6 @@ deployFrontend :
   enabled: true
 
 
-affinityS1:
-  podAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-    - labelSelector:
-        matchExpressions:
-        - key: security
-          operator: In
-          values:
-          - S1
-      topologyKey: "kubernetes.io/hostname"
-
-
-
 front-affinity :
   tolerations:
   - key: affinity-taint
@@ -54,7 +41,6 @@ front-affinity :
             values:
             - front-end
 
-
 back-affinity :
   tolerations:
   - key: affinity-taint
@@ -69,19 +55,6 @@ back-affinity :
             operator: In
             values:
             - back-end
-
-
-affinityS2:
-  podAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-    - labelSelector:
-        matchExpressions:
-        - key: security
-          operator: In
-          values:
-          - S2
-      topologyKey: "kubernetes.io/hostname"
-
 
 memory: 512Mi
 

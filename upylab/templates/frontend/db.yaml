@@ -16,19 +16,12 @@ spec:
         app: postgresdb
     spec:
 
+      {{- with .Values.frontAffinity }}
       tolerations:
-      - key: affinity-taint
-        operator: Equal
-        value: front-end
+        {{- toYaml .tolerations | nindent 6 }}
       affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: affinity-label
-                operator: In
-                values:
-                - front-end
+        {{- toYaml .affinity | nindent 8 }}
+      {{- end }}
 
       containers:
       - name: postgresdb

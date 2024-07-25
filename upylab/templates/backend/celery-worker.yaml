@@ -20,19 +20,12 @@ spec:
     spec:
       runtimeClassName: gvisor  # run pod in gke sandox
 
+      {{- with .Values.backAffinity }}
       tolerations:
-      - key: affinity-taint
-        operator: Equal
-        value: back-end
+        {{- toYaml .tolerations | nindent 6 }}
       affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: affinity-label
-                operator: In
-                values:
-                - back-end
+        {{- toYaml .affinity | nindent 8 }}
+      {{- end }}
 
       {{- if .Values.seccomp_profile.enabled }}
       initContainers:

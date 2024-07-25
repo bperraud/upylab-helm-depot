@@ -49,11 +49,11 @@ spec:
 
           resources:
             requests:
-              memory: 50Mi
-              cpu: 100m
+              memory: 1032Mi
+              cpu: 1000m
             limits:
-              memory: 100Mi
-              cpu: 200m
+              memory: 2064Mi
+              cpu: 1500m
 
       containers:
       - name: django-upylab

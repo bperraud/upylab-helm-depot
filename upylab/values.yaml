@@ -2,10 +2,10 @@
 # worker configuration
 python_version: "3.12-slim"
 cpu_limits: 500m
-memory_limits: 500Mi
-cpu_requests: 500m
+memory_limits: 512Mi
+cpu_requests: 300m
 memory_requests : 256Mi
-replica : 1
+replica : 2
 
 # seccompp
 seccomp_profile :

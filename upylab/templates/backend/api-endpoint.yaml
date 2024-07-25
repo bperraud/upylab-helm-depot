@@ -17,7 +17,7 @@ spec:
         k8s-app: back-node
         app: api
     spec:
-      {{ toYaml .Values.back-affinity | nindent 6 }}
+      {{- toYaml .Values.back-affinity | nindent 6 }}
 
       containers:
       - name: api

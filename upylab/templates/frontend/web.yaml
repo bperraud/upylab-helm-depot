@@ -17,7 +17,8 @@ spec:
         k8s-app: front-node
         app: django-upylab
     spec:
-      {{- toYaml .Values.front-affinity | nindent 6 }}
+
+      {{- toYaml .Values.front-affinity | nindent 4 }}
 
       initContainers:
         - name: wait-for-postgres

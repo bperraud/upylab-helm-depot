@@ -37,7 +37,7 @@ frontAffinity :
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
         - matchExpressions:
-          - key: affinity-label
+          - key: cloud.google.com/gke-nodepool
             operator: In
             values:
             - front-end
@@ -53,7 +53,7 @@ backAffinity :
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
         - matchExpressions:
-          - key: affinity-label
+          - key: cloud.google.com/gke-nodepool
             operator: In
             values:
             - back-end

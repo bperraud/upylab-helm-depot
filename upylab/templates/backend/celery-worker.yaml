@@ -49,6 +49,7 @@ spec:
           requests:
             memory: {{ .Values.memory_requests }}
             cpu: {{ .Values.cpu_requests }}
+
         volumeMounts:
         - mountPath: /tmp/compilab/
           name: filestore

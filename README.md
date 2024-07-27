@@ -87,3 +87,6 @@ gcloud auth login
 activate api :
 gcloud services enable certificatemanager.googleapis.com --project=YOUR_PROJECT_ID
 
+
+firewall : gcloud compute firewall-rules create allow-kubelet --allow=tcp:10250 --network=default
+update tags instance : gcloud compute instances add-tags gke-standard-lab-back-end-1c4719af-wprt --tags production --zone europe-west1-b

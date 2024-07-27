@@ -17,6 +17,7 @@ spec:
         k8s-app: back-node
         app: api
     spec:
+      runtimeClassName: gvisor  # run pod in gke sandox
 
       {{- with .Values.backAffinity }}
       tolerations:

@@ -42,10 +42,10 @@ spec:
           resources:
             requests:
               memory: 1032Mi
-              cpu: 1000m
+              cpu: 500m
             limits:
               memory: 2064Mi
-              cpu: 1500m
+              cpu: 1000m
 
       containers:
       - name: django-upylab

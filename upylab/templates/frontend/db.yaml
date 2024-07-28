@@ -31,10 +31,10 @@ spec:
         resources:
           requests:
             memory: 512Mi
-            cpu: 500m
+            cpu: 300m
           limits:
             memory: 1024Mi
-            cpu: 600m
+            cpu: 500m
       volumes:
       - name: postgresdata
         persistentVolumeClaim:

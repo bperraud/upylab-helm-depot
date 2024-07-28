@@ -3,12 +3,12 @@ entries:
   upylab:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-07-28T22:35:25.101261+02:00"
+    created: "2024-07-28T22:54:06.414467+02:00"
     description: A Helm chart for Kubernetes
-    digest: f5bb9252a40b2a3dcb3c8af2463ee899bad8fca2fa134ef0c79f96ca1701032f
+    digest: e5eb65bd798ee7c26d1189d5d28aef35b8e0df119fd1206d8402269e040fc71f
     name: upylab
     type: application
     urls:
     - https://bperraud.github.io/upylab-helm-depot/upylab-0.1.0.tgz
     version: 0.1.0
-generated: "2024-07-28T22:35:25.100695+02:00"
+generated: "2024-07-28T22:54:06.414074+02:00"

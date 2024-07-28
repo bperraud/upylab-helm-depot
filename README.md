@@ -90,3 +90,7 @@ gcloud services enable certificatemanager.googleapis.com --project=YOUR_PROJECT_
 
 firewall : gcloud compute firewall-rules create allow-kubelet --allow=tcp:10250 --network=default
 update tags instance : gcloud compute instances add-tags gke-standard-lab-back-end-1c4719af-wprt --tags production --zone europe-west1-b
+
+
+
+gcloud container clusters get-credentials standard-upylab --region europe-west1-b

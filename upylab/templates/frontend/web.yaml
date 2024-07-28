@@ -44,7 +44,7 @@ spec:
               memory: 1032Mi
               cpu: 500m
             limits:
-              memory: 2064Mi
+              memory: 1500Mi
               cpu: 1000m
 
       containers:

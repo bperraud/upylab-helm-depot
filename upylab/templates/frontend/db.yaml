@@ -16,13 +16,6 @@ spec:
         app: postgresdb
     spec:
 
-      {{- with .Values.frontAffinity }}
-      tolerations:
-        {{- toYaml .tolerations | nindent 6 }}
-      affinity:
-        {{- toYaml .affinity | nindent 8 }}
-      {{- end }}
-
       containers:
       - name: postgresdb
         image: postgres:13.3

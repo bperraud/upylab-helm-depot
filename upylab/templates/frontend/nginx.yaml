@@ -19,13 +19,6 @@ spec:
         app: nginx
     spec:
 
-      {{- with .Values.frontAffinity }}
-      tolerations:
-        {{- toYaml .tolerations | nindent 6 }}
-      affinity:
-        {{- toYaml .affinity | nindent 8 }}
-      {{- end }}
-
       containers:
       - name: nginx
         image: ryukenin/upylab-nginx:latest

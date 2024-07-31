@@ -49,7 +49,6 @@ spec:
             memory: 512Mi
             cpu: 500m
 
-
       volumes:
       - name: filestore
         persistentVolumeClaim:
@@ -81,4 +80,17 @@ spec:
   ports:
     - port: 80
       targetPort: 3000
+---
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: api-endpoint-vpa
+  namespace: default
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: api-endpoint
+  updatePolicy:
+    updateMode: "Auto"
 {{- end }}

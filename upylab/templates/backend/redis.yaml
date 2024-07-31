@@ -50,3 +50,16 @@ spec:
     targetPort: 6379
   selector:
     app: redis-upylab
+---
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: redis-upylab-vpa
+  namespace: default
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: redis-upylab
+  updatePolicy:
+    updateMode: "Auto"

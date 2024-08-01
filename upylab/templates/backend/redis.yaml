@@ -19,13 +19,6 @@ spec:
 
       runtimeClassName: gvisor  # run pod in gke sandox
 
-      {{- with .Values.sandboxAffinity }}
-      tolerations:
-        {{- toYaml .tolerations | nindent 6 }}
-      affinity:
-        {{- toYaml .affinity | nindent 8 }}
-      {{- end }}
-
       containers:
       - name: redis
         image: redis:latest
@@ -51,15 +44,15 @@ spec:
   selector:
     app: redis-upylab
 ---
-#apiVersion: autoscaling.k8s.io/v1
-#kind: VerticalPodAutoscaler
-#metadata:
-#  name: redis-upylab-vpa
-#  namespace: default
-#spec:
-#  targetRef:
-#    apiVersion: apps/v1
-#    kind: Deployment
-#    name: redis-upylab
-#  updatePolicy:
-#    updateMode: "Auto"
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: redis-upylab-vpa
+  namespace: default
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: redis-upylab
+  updatePolicy:
+    updateMode: "Auto"

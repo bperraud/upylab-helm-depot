@@ -20,13 +20,6 @@ spec:
     spec:
       runtimeClassName: gvisor  # run pod in gke sandox
 
-      {{- with .Values.sandboxAffinity }}
-      tolerations:
-        {{- toYaml .tolerations | nindent 6 }}
-      affinity:
-        {{- toYaml .affinity | nindent 8 }}
-      {{- end }}
-
       {{- if .Values.seccomp_profile.enabled }}
       initContainers:
         - name: upylab-seccomp

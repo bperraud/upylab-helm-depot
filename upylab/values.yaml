@@ -58,6 +58,22 @@ backAffinity :
             values:
             - back-end
 
+sandboxAffinity :
+  tolerations:
+  - key: sandbox.gke.io/runtime
+    operator: Equal
+    value: gvisor
+    effect: NoSchedule
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: sandbox.gke.io/runtime
+            operator: In
+            values:
+            - gvisor
+
 memory: 512Mi
 
 deploySSL :

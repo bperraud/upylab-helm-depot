@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-deployment
+  name: api-endpoint
   labels:
     k8s-app: back-node
-    app: api
+    app: api-endpoint
 spec:
   replicas: 1
   selector:
     matchLabels:
       k8s-app: back-node
-      app: api
+      app: api-endpoint
   template:
     metadata:
       labels:
         k8s-app: back-node
-        app: api
+        app: api-endpoint
     spec:
-      runtimeClassName: gvisor  # run pod in gke sandox
+      runtimeClassName: gvisor  # run pod in gke sandbox
 
       containers:
       - name: api

@@ -37,10 +37,10 @@ spec:
           mountPath: /app/web/media_root
         resources:
           requests:
-            memory: {{ .Values.memory }}
+            memory: 128Mi
             cpu: 100m
           limits:
-            memory: {{ .Values.memory }}
+            memory: 256Mi
             cpu: 200m
       volumes:
       - name: staticroot

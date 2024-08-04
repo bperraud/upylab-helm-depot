@@ -41,7 +41,7 @@ apiVersion: autoscaling.k8s.io/v1beta2
 kind: VerticalPodAutoscaler
 metadata:
   namespace: kube-system
-  name: metrics-server-vpa
+  name: metrics-server-v0.7.1
 spec:
   targetRef:
     apiVersion: "extensions/v1beta1"
@@ -75,3 +75,16 @@ spec:
     name: kube-proxy
   updatePolicy:
     updateMode: "Initial"
+---
+apiVersion: autoscaling.k8s.io/v1beta2
+kind: VerticalPodAutoscaler
+metadata:
+  namespace: kube-system
+  name: konnectivity-agent
+spec:
+  targetRef:
+    apiVersion: "extensions/v1beta1"
+    kind: DaemonSet
+    name: kube-proxy
+  updatePolicy:
+    updateMode: "Auto"

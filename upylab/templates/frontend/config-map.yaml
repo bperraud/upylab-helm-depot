@@ -16,6 +16,10 @@ data:
   ALLOWED_HOSTS: "*"
   TIME_ZONE: {{ .Values.timezone }}
 
+  # Logging
+  LOGGING_LTI_FILENAME: "/var/log/web/lti.log"
+  LOGGING_LTI_LEVEL: "DEBUG"
+
   # Site configuration
   SITE_PROTOCOL: {{ .Values.site_protocol }}
   SITE_DOMAIN: {{ .Values.site_domain }}

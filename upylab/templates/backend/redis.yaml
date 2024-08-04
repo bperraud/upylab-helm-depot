@@ -16,7 +16,6 @@ spec:
         app: redis-upylab
         k8s-app: api-node
     spec:
-
       runtimeClassName: gvisor  # run pod in gke sandox
 
       containers:

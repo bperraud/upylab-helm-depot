@@ -18,7 +18,7 @@ spec:
         k8s-app: back-node
         app: celery-worker
     spec:
-      runtimeClassName: gvisor  # run pod in gke sandox
+      runtimeClassName: gvisor  # run pod in gke sandbox
 
       {{- if .Values.seccomp_profile.enabled }}
       initContainers:

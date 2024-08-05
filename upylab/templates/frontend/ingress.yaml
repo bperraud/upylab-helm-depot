@@ -1,3 +1,4 @@
+{{ if .Values.prod.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -21,3 +22,29 @@ spec:
                 name: nginx
                 port:
                   number: 80
+{{ else }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+  annotations:
+    kubernetes.io/ingress.allow-http: "true"
+    networking.gke.io/managed-certificates: my-certificate
+    kubernetes.io/ingress.global-static-ip-name: "static-ip"
+spec:
+  rules:
+    - host: upylab.duckdns.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx
+                port:
+                  number: 80
+  tls:
+  - hosts:
+    - upylab.duckdns.org
+    secretName: upylab-certificate
+{{ end }}

@@ -20,25 +20,25 @@ spec:
     spec:
       runtimeClassName: gvisor  # run pod in gke sandbox
 
-      {{- if .Values.seccomp_profile.enabled }}
+      {{ if .Values.seccomp_profile.enabled }}
       initContainers:
         - name: upylab-seccomp
           image: ryukenin/upylab-seccomp:new
           volumeMounts:
             - mountPath: /var/lib/kubelet/seccomp/profiles
               name: data
-      {{- end }}
+      {{ end }}
 
       containers:
       - name: celery-worker
         image: ryukenin/upylab-celery-worker:{{ .Values.python_version }}
         imagePullPolicy: Always
-        {{- if .Values.seccomp_profile.enabled }}
+        {{ if .Values.seccomp_profile.enabled }}
         securityContext:
           seccompProfile:
             type: Localhost
             localhostProfile: profiles/config.json
-        {{- end }}
+        {{ end }}
 
         resources:
           limits:
@@ -51,17 +51,17 @@ spec:
         volumeMounts:
         - mountPath: /tmp/compilab/
           name: filestore
-        {{- if .Values.seccomp_profile.enabled }}
+        {{ if .Values.seccomp_profile.enabled }}
         - mountPath: /var/lib/kubelet/seccomp/profiles
           name: data
-        {{- end }}
+        {{ end }}
 
       volumes:
-      {{- if .Values.seccomp_profile.enabled }}
+      {{ if .Values.seccomp_profile.enabled }}
       - name: data
         persistentVolumeClaim:
           claimName: shared-pvc
-      {{- end }}
+      {{ end }}
       - name: filestore
         persistentVolumeClaim:
           claimName: filestore-pvc

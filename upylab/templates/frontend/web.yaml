@@ -49,7 +49,8 @@ spec:
 
       containers:
       - name: django-upylab
-        image: ryukenin/upylab-pylab:latest
+        image: ryukenin/upylab-pylab:late
+        #image: ryukenin/upylab-pylab:latest
         #command: ["gunicorn", "pylab.wsgi:application", "--bind", "0.0.0.0:8000", "--workers=4", "--timeout=120"]
         envFrom:
           - configMapRef:

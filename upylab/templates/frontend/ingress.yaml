@@ -10,6 +10,8 @@ metadata:
     kubernetes.io/spec.ingressClassName: "gce"
     networking.gke.io/managed-certificates: upylab-certificate
     kubernetes.io/ingress.global-static-ip-name: "static-ip"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header X-Original-Protocol $scheme;
 spec:
   rules:
     - host: {{ .Values.site_domain }}

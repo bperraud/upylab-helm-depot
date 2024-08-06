@@ -3,18 +3,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: django-upylab
-  labels:
-    k8s-app: front-node
 spec:
   replicas: 1
   selector:
     matchLabels:
-      k8s-app: front-node
       app: django-upylab
   template:
     metadata:
       labels:
-        k8s-app: front-node
         app: django-upylab
     spec:
 

@@ -94,3 +94,7 @@ update tags instance : gcloud compute instances add-tags gke-standard-lab-back-e
 
 
 gcloud container clusters get-credentials standard-upylab --region europe-west1-b
+
+
+kubectl set image deployment/django-upylab django-upylab=ryukenin/upylab-pylab:latest
+

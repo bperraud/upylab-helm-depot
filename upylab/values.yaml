@@ -7,17 +7,20 @@ cpu_requests: 300m
 memory_requests : 256Mi
 replica : 3
 
+# worker env
+TIMEOUT : 1
+UNSAFE_MODULES : "os,sys,ressource,socket,ctypes,subprocess,shutil"
+
 # seccompp
 seccomp_profile :
   enabled: false
-
 restrict_system_call:
   - exit
   - open
   - read
 
 # backend-endpoint
-tempdir : "/tmp/compilab/"
+tempdir : "/tmp/compilab"
 max_file_mb : 1
 
 dev_mode :
@@ -26,17 +29,14 @@ dev_mode :
 # frontend
 deployFrontend :
   enabled: true
-
 deploySSL :
   enabled: true
 
 timezone: 'Europe/Brussels'
-
 #site_domain: upylab2.ulb.ac.be
 site_domain: upylab.duckdns.org
 site_protocol: https
 allowed_hosts: '*'
-
 # mail settings
 site_email: upylab@ulb.be
 site_email_password: Y4u%y^#Ez88nUp

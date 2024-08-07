@@ -20,8 +20,8 @@ restrict_system_call:
 tempdir : "/tmp/compilab/"
 max_file_mb : 1
 
-prod :
-  enabled: false
+dev_mode :
+  enabled: true
 
 # frontend
 deployFrontend :

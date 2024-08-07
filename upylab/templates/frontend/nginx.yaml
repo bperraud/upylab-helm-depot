@@ -18,10 +18,10 @@ spec:
         k8s-app: front-node
         app: nginx
     spec:
-
       containers:
       - name: nginx
         image: ryukenin/upylab-nginx:latest
+        imagePullPolicy: Always
         env:
         - name: SERVER_NAME
           value: {{ .Values.site_domain }}

@@ -3,19 +3,16 @@ kind: Deployment
 metadata:
   name: celery-worker
   labels:
-    k8s-app: back-node
     app: celery-worker
 spec:
   replicas: {{ .Values.replica }}
 
   selector:
     matchLabels:
-      k8s-app: back-node
       app: celery-worker
   template:
     metadata:
       labels:
-        k8s-app: back-node
         app: celery-worker
     spec:
       runtimeClassName: gvisor  # run pod in gke sandbox

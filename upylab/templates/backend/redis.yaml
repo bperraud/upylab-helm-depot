@@ -2,19 +2,15 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis-upylab
-  labels:
-    k8s-app: api-node
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: redis-upylab
-      k8s-app: api-node
   template:
     metadata:
       labels:
         app: redis-upylab
-        k8s-app: api-node
     spec:
       runtimeClassName: gvisor  # run pod in gke sandbox
 

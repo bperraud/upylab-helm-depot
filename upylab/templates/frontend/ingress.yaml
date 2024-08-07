@@ -8,12 +8,11 @@ metadata:
     {{ if .Values.dev_mode.enabled }}
     networking.gke.io/managed-certificates: my-certificate
     {{ else }}
+    kubernetes.io/ingress.allow-http: "false"
     kubernetes.io/spec.ingressClassName: "gce"
     networking.gke.io/managed-certificates: upylab-certificate
     {{ end }}
     kubernetes.io/ingress.global-static-ip-name: "static-ip"
-    nginx.ingress.kubernetes.io/server-snippet: |
-      proxy_set_header X-Original-Protocol https;
 spec:
   rules:
     - host: {{ .Values.site_domain }}

@@ -41,13 +41,12 @@ spec:
               cpu: 500m
             limits:
               memory: 1500Mi
-              cpu: 1000m
+              cpu: 1500m
 
       containers:
       - name: django-upylab
         image: ryukenin/upylab-pylab:latest
         imagePullPolicy: Always
-        #command: ["gunicorn", "pylab.wsgi:application", "--bind", "0.0.0.0:8000", "--workers=4", "--timeout=120"]
         envFrom:
           - configMapRef:
               name: db-config

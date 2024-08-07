@@ -4,18 +4,15 @@ kind: Deployment
 metadata:
   name: nginx
   labels:
-    k8s-app: front-node
     app: nginx
 spec:
   replicas: 1
   selector:
     matchLabels:
-      k8s-app: front-node
       app: nginx
   template:
     metadata:
       labels:
-        k8s-app: front-node
         app: nginx
     spec:
       containers:

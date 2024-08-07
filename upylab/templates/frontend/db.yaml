@@ -31,7 +31,7 @@ spec:
             memory: 312Mi
             cpu: 250m
           limits:
-            memory: 700Mi
+            memory: 600Mi
             cpu: 500m
       volumes:
       - name: postgresdata

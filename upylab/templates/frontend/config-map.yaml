@@ -10,9 +10,12 @@ data:
   POSTGRES_DB: upylab_db
   DATABASE_HOST: postgresdb
   DATABASE_PORT: "5432"
+
   # Django settings
   SECRET_KEY: "qj8nyxnmjo2(jz+1c5i$4)mp6kdmg-:&6_n*y9_8c#r^is1po)"
+  {{ if .Values.dev_mode.enabled }}
   DEBUG: "True"
+  {{ end }}
   ALLOWED_HOSTS: "*"
   TIME_ZONE: {{ .Values.timezone }}
 

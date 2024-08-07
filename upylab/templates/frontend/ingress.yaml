@@ -1,39 +1,22 @@
-{{ if .Values.prod.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: my-ingress
   annotations:
-    #ingress.kubernetes.io/ssl-redirect: "true"
     #kubernetes.io/pre-shared-cert: "staging-google-managed-ssl"
-    kubernetes.io/ingress.allow-http: "true"
+    ingress.kubernetes.io/ssl-redirect: "true"
+    {{ if .Values.dev_mode.enabled }}
+    networking.gke.io/managed-certificates: my-certificate
+    {{ else }}
     kubernetes.io/spec.ingressClassName: "gce"
     networking.gke.io/managed-certificates: upylab-certificate
+    {{ end }}
     kubernetes.io/ingress.global-static-ip-name: "static-ip"
+    nginx.ingress.kubernetes.io/server-snippet: |
+      proxy_set_header X-Original-Protocol https;
 spec:
   rules:
     - host: {{ .Values.site_domain }}
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: nginx
-                port:
-                  number: 80
-{{ else }}
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: my-ingress
-  annotations:
-    kubernetes.io/ingress.allow-http: "true"
-    networking.gke.io/managed-certificates: my-certificate
-    kubernetes.io/ingress.global-static-ip-name: "static-ip"
-spec:
-  rules:
-    - host: upylab.duckdns.org
       http:
         paths:
           - path: /
@@ -47,4 +30,3 @@ spec:
   - hosts:
     - upylab.duckdns.org
     secretName: upylab-certificate
-{{ end }}

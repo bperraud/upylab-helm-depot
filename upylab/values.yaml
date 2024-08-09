@@ -8,11 +8,11 @@ memory_requests : 256Mi
 replica : 3
 
 # worker env
-TIMEOUT : 1
+TIMEOUT : 2
 UNSAFE_MODULES : "os,sys,ressource,socket,ctypes,subprocess,shutil"
 
 # seccompp
-seccomp_profile :
+seccomp_profile:
   enabled: false
 restrict_system_call:
   - exit
@@ -21,15 +21,15 @@ restrict_system_call:
 
 # backend-endpoint
 tempdir : "/tmp/compilab"
-max_file_mb : 1
+max_file_mb : 5
 
 dev_mode :
   enabled: true
 
 # frontend
-deployFrontend :
+deployFrontend:
   enabled: true
-deploySSL :
+deploySSL:
   enabled: true
 
 timezone: 'Europe/Brussels'

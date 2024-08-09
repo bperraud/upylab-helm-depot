@@ -8,6 +8,7 @@ data:
   POSTGRES_USER: admin
   POSTGRES_PASSWORD: admin
   POSTGRES_DB: upylab_db
+  DATABASE_TYPE: postgres
   DATABASE_HOST: postgresdb
   DATABASE_PORT: "5432"
 

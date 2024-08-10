@@ -18,8 +18,8 @@ spec:
       - name: postgresdb
         image: postgres:13.3
         envFrom:
-        - configMapRef:
-            name: db-config
+          - configMapRef:
+              name: db-config
         ports:
         - containerPort: 5432
         volumeMounts:

@@ -13,6 +13,7 @@ data:
   ALLOWED_HOSTS: "*"
   TIME_ZONE: "{{ .Values.timezone }}"
   STATIC_ROOT: "/app/web/static_root"
+  DATABASE_TYPE: "postgres"
 
   # Logging
   LOGGING_LTI_FILENAME: "/var/log/web/lti.log"
@@ -61,7 +62,6 @@ data:
   POSTGRES_USER: "admin"
   POSTGRES_PASSWORD: "admin"
   POSTGRES_DB: "upylab_db"
-  DATABASE_TYPE: "postgres"
   DATABASE_HOST: "postgresdb"
   DATABASE_PORT: "5432"
 {{ end }}

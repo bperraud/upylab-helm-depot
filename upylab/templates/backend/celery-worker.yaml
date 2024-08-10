@@ -31,10 +31,10 @@ spec:
         image: ryukenin/upylab-celery-worker:{{ .Values.python_version }}
         imagePullPolicy: Always
         env:
-        - name: TIMEOUT
-          value: {{ .Values.TIMEOUT }}
-        - name: UNSAFE_MODULES
-          value: {{ .Values.UNSAFE_MODULES }}
+          - name: TIMEOUT
+            value: {{ .Values.TIMEOUT }}
+          - name: UNSAFE_MODULES
+            value: {{ .Values.UNSAFE_MODULES }}
         {{ if .Values.seccomp_profile.enabled }}
         securityContext:
           seccompProfile:

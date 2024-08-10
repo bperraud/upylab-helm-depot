@@ -11,7 +11,7 @@ data:
   DEBUG: "True"
   {{ end }}
   ALLOWED_HOSTS: "*"
-  TIME_ZONE: {{ .Values.timezone }}
+  TIME_ZONE: "{{ .Values.timezone }}"
   STATIC_ROOT: "/app/web/static_root"
 
   # Logging
@@ -19,12 +19,12 @@ data:
   LOGGING_LTI_LEVEL: "DEBUG"
 
   # Site configuration
-  SITE_PROTOCOL: {{ .Values.site_protocol }}
-  SITE_DOMAIN: {{ .Values.site_domain }}
-  SITE_EMAIL: {{ .Values.site_email }}
-  SITE_EMAIL_PASSWORD: {{ .Values.site_email_password }}
-  SITE_EMAIL_HOST: {{ .Values.site_email_host }}
-  SITE_EMAIL_PORT: {{ .Values.site_email_port }}
+  SITE_PROTOCOL: "{{ .Values.site_protocol }}"
+  SITE_DOMAIN: "{{ .Values.site_domain }}"
+  SITE_EMAIL: "{{ .Values.site_email }}"
+  SITE_EMAIL_PASSWORD: "{{ .Values.site_email_password }}"
+  SITE_EMAIL_HOST: "{{ .Values.site_email_host }}"
+  SITE_EMAIL_PORT: "{{ .Values.site_email_port }}"
 
   # Upylab user & course
   UPYLAB_USERNAME: "upylab"

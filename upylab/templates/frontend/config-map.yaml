@@ -33,6 +33,17 @@ data:
   SITE_EMAIL_HOST: {{ .Values.site_email_host }}
   SITE_EMAIL_PORT: {{ .Values.site_email_port | quote }}
 
+ # Upylab user & course
+  UPYLAB_USERNAME: upylab
+  UPYLAB_EMAIL: upylab@ulb.be
+  UPYLAB_FIRSTNAME: upylab
+  UPYLAB_LASTNAME: upylab
+  UPYLAB_COURSE_NAME: UpyLaB
+
+  # Course settings
+  DEFAULT_CHAPTER_NAME: Général
+  INVITE_TOKEN_LENGTH: 20
+
   # Prof signup restricted
   PROF_SIGNUP_RESTRICTED: "False"
   PROF_SIGNUP_RESTRICTED_CONTACT_NAME: "UpyLaB"
@@ -42,4 +53,10 @@ data:
   BKEND_API_SECRET_KEY: helloworld
   BKEND_API_ADDR_TESTSOLUTION: http://api-service.default.svc.cluster.local:3000/test_solution
   BKEND_API_ADDR_TESTEXERCISE: http://api-service.default.svc.cluster.local:3000/test_exercice
+
+  # Dashboard Celery
+  CELERY_BROKER_URL: 'redis://redis-upylab:6379'
+  CELERY_RESULT_BACKEND: 'redis://redis-upylab:6379'
+  TIMEREPORTS_REFRESH_INTERVAL: 30.0
+  CELERY_DEL_USERS_GDPR_REFRESH_INTERVAL: 604800.0
 {{ end }}

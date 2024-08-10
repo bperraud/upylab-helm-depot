@@ -12,7 +12,7 @@ data:
   {{ end }}
   ALLOWED_HOSTS: "*"
   TIME_ZONE: {{ .Values.timezone }}
-  STATIC_ROOT: /app/web/static_root
+  STATIC_ROOT: "/app/web/static_root"
 
   # Logging
   LOGGING_LTI_FILENAME: "/var/log/web/lti.log"

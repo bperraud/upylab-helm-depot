@@ -37,9 +37,9 @@ timezone: 'Europe/Brussels'
 site_domain: upylab.duckdns.org
 site_protocol: https
 allowed_hosts: '*'
+
 # mail settings
 site_email: upylab@ulb.be
 site_email_password: Y4u%y^#Ez88nUp
 site_email_host: smtp.office365.com
 site_email_port: "587"
-

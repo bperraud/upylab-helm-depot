@@ -10,7 +10,7 @@ data:
   {{ if .Values.dev_mode.enabled }}
   DEBUG: "True"
   {{ end }}
-  ALLOWED_HOSTS: "*"
+  ALLOWED_HOSTS: "nginx"
   TIME_ZONE: "{{ .Values.timezone }}"
   STATIC_ROOT: "/app/web/static_root"
   DATABASE_TYPE: "postgres"

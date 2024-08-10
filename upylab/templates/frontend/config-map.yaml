@@ -10,7 +10,7 @@ data:
   POSTGRES_DB: upylab_db
   DATABASE_TYPE: postgres
   DATABASE_HOST: postgresdb
-  DATABASE_PORT: "5432"
+  DATABASE_PORT: 5432
 
   # Django settings
   SECRET_KEY: "qj8nyxnmjo2(jz+1c5i$4)mp6kdmg-:&6_n*y9_8c#r^is1po)"

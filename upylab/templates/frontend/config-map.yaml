@@ -35,7 +35,7 @@ data:
 
   # Course settings
   DEFAULT_CHAPTER_NAME: Général
-  INVITE_TOKEN_LENGTH: 20
+  INVITE_TOKEN_LENGTH: "20"
 
   # Prof signup restricted
   PROF_SIGNUP_RESTRICTED: "False"
@@ -50,8 +50,8 @@ data:
   # Dashboard Celery
   CELERY_BROKER_URL: 'redis://redis-upylab:6379'
   CELERY_RESULT_BACKEND: 'redis://redis-upylab:6379'
-  TIMEREPORTS_REFRESH_INTERVAL: 30.0
-  CELERY_DEL_USERS_GDPR_REFRESH_INTERVAL: 604800.0
+  TIMEREPORTS_REFRESH_INTERVAL: "30.0"
+  CELERY_DEL_USERS_GDPR_REFRESH_INTERVAL: "604800.0"
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -63,5 +63,5 @@ data:
   POSTGRES_DB: upylab_db
   DATABASE_TYPE: postgres
   DATABASE_HOST: postgresdb
-  DATABASE_PORT: 5432
+  DATABASE_PORT: "5432"
 {{ end }}

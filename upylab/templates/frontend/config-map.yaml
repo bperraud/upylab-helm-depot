@@ -27,29 +27,29 @@ data:
   SITE_EMAIL_PORT: {{ .Values.site_email_port | quote }}
 
   # Upylab user & course
-  UPYLAB_USERNAME: upylab
-  UPYLAB_EMAIL: upylab@ulb.be
-  UPYLAB_FIRSTNAME: upylab
-  UPYLAB_LASTNAME: upylab
-  UPYLAB_COURSE_NAME: UpyLaB
+  UPYLAB_USERNAME: "upylab"
+  UPYLAB_EMAIL: "upylab@ulb.be"
+  UPYLAB_FIRSTNAME: "upylab"
+  UPYLAB_LASTNAME: "upylab"
+  UPYLAB_COURSE_NAME: UpyLaB"
 
   # Course settings
-  DEFAULT_CHAPTER_NAME: Général
+  DEFAULT_CHAPTER_NAME: "Général"
   INVITE_TOKEN_LENGTH: "20"
 
   # Prof signup restricted
   PROF_SIGNUP_RESTRICTED: "False"
   PROF_SIGNUP_RESTRICTED_CONTACT_NAME: "UpyLaB"
-  PROF_SIGNUP_RESTRICTED_CONTACT_EMAIL: upylab@ulb.be
+  PROF_SIGNUP_RESTRICTED_CONTACT_EMAIL: "upylab@ulb.be"
 
   # Backend API connection
-  BKEND_API_SECRET_KEY: helloworld
-  BKEND_API_ADDR_TESTSOLUTION: http://api-service.default.svc.cluster.local:3000/test_solution
-  BKEND_API_ADDR_TESTEXERCISE: http://api-service.default.svc.cluster.local:3000/test_exercice
+  BKEND_API_SECRET_KEY: "helloworld"
+  BKEND_API_ADDR_TESTSOLUTION: "http://api-service.default.svc.cluster.local:3000/test_solution"
+  BKEND_API_ADDR_TESTEXERCISE: "http://api-service.default.svc.cluster.local:3000/test_exercice"
 
   # Dashboard Celery
-  CELERY_BROKER_URL: 'redis://redis-upylab:6379'
-  CELERY_RESULT_BACKEND: 'redis://redis-upylab:6379'
+  CELERY_BROKER_URL: "redis://redis-upylab:6379"
+  CELERY_RESULT_BACKEND: "redis://redis-upylab:6379"
   TIMEREPORTS_REFRESH_INTERVAL: "30.0"
   CELERY_DEL_USERS_GDPR_REFRESH_INTERVAL: "604800.0"
 ---
@@ -58,10 +58,10 @@ kind: ConfigMap
 metadata:
   name: db-config
 data:
-  POSTGRES_USER: admin
-  POSTGRES_PASSWORD: admin
-  POSTGRES_DB: upylab_db
-  DATABASE_TYPE: postgres
-  DATABASE_HOST: postgresdb
+  POSTGRES_USER: "admin"
+  POSTGRES_PASSWORD: "admin"
+  POSTGRES_DB: "upylab_db"
+  DATABASE_TYPE: "postgres"
+  DATABASE_HOST: "postgresdb"
   DATABASE_PORT: "5432"
 {{ end }}

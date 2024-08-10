@@ -3,15 +3,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: db-config
+  name: web-config
 data:
-  POSTGRES_USER: admin
-  POSTGRES_PASSWORD: admin
-  POSTGRES_DB: upylab_db
-  DATABASE_TYPE: postgres
-  DATABASE_HOST: postgresdb
-  DATABASE_PORT: 5432
-
   # Django settings
   SECRET_KEY: "qj8nyxnmjo2(jz+1c5i$4)mp6kdmg-:&6_n*y9_8c#r^is1po)"
   {{ if .Values.dev_mode.enabled }}
@@ -33,7 +26,7 @@ data:
   SITE_EMAIL_HOST: {{ .Values.site_email_host }}
   SITE_EMAIL_PORT: {{ .Values.site_email_port | quote }}
 
- # Upylab user & course
+  # Upylab user & course
   UPYLAB_USERNAME: upylab
   UPYLAB_EMAIL: upylab@ulb.be
   UPYLAB_FIRSTNAME: upylab
@@ -59,4 +52,16 @@ data:
   CELERY_RESULT_BACKEND: 'redis://redis-upylab:6379'
   TIMEREPORTS_REFRESH_INTERVAL: 30.0
   CELERY_DEL_USERS_GDPR_REFRESH_INTERVAL: 604800.0
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+data:
+  POSTGRES_USER: admin
+  POSTGRES_PASSWORD: admin
+  POSTGRES_DB: upylab_db
+  DATABASE_TYPE: postgres
+  DATABASE_HOST: postgresdb
+  DATABASE_PORT: 5432
 {{ end }}

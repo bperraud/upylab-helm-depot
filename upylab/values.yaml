@@ -24,13 +24,13 @@ tempdir : "/tmp/compilab"
 max_file_mb : "5"
 
 dev_mode :
-  enabled: true
+  enabled: false
 
 # frontend
 deployFrontend:
   enabled: true
 deploySSL:
-  enabled: true
+  enabled: false
 
 timezone: "Europe/Brussels"
 #site_domain: "upylab2.ulb.ac.be"

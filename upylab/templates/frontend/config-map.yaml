@@ -24,7 +24,7 @@ data:
   SITE_EMAIL: {{ .Values.site_email }}
   SITE_EMAIL_PASSWORD: {{ .Values.site_email_password }}
   SITE_EMAIL_HOST: {{ .Values.site_email_host }}
-  SITE_EMAIL_PORT: {{ .Values.site_email_port | quote }}
+  SITE_EMAIL_PORT: {{ .Values.site_email_port }}
 
   # Upylab user & course
   UPYLAB_USERNAME: "upylab"

@@ -18,21 +18,21 @@ spec:
         - name: wait-for-postgres
           image: postgres:13.3
           env:
-            - name: PG_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: db-config
-                  key: DATABASE_HOST
-            - name: PG_USER
-              valueFrom:
-                configMapKeyRef:
-                  name: db-config
-                  key: POSTGRES_USER
-            - name: PGPASSWORD
-              valueFrom:
-                configMapKeyRef:
-                  name: db-config
-                  key: POSTGRES_PASSWORD
+          - name: PG_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: db-config
+                key: DATABASE_HOST
+          - name: PG_USER
+            valueFrom:
+              configMapKeyRef:
+                name: db-config
+                key: POSTGRES_USER
+          - name: PGPASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: db-config
+                key: POSTGRES_PASSWORD
           command: ['sh', '-c', 'until psql -h $PG_HOST -U $PG_USER -d postgres -c "SELECT 1" >/dev/null 2>&1; do sleep 1; done;']
 
           resources:

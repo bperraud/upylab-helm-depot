@@ -50,6 +50,8 @@ spec:
         envFrom:
           - configMapRef:
               name: web-config
+          - configMapRef:
+              name: db-config
         ports:
         - containerPort: 8000
         volumeMounts:

@@ -24,7 +24,7 @@ tempdir : "/tmp/compilab"
 max_file_mb : "5"
 
 dev_mode :
-  enabled: false
+  enabled: true
 
 # frontend
 deployFrontend:

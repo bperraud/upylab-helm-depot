@@ -9,7 +9,7 @@ replica : 3
 
 # worker env
 TIMEOUT : "2"
-UNSAFE_MODULES : "os,sys,ressource,socket,ctypes,subprocess,shutil"
+UNSAFE_MODULES : "ressource,socket,ctypes,subprocess,shutil"
 
 # seccompp
 seccomp_profile:
@@ -24,7 +24,7 @@ tempdir : "/tmp/compilab"
 max_file_mb : "5"
 
 dev_mode :
-  enabled: true
+  enabled: false
 
 # frontend
 deployFrontend:
@@ -33,8 +33,8 @@ deploySSL:
   enabled: false
 
 timezone: "Europe/Brussels"
-#site_domain: "upylab2.ulb.ac.be"
-site_domain: "upylab.duckdns.org"
+site_domain: "upylab2.ulb.ac.be"
+#site_domain: "upylab.duckdns.org"
 site_protocol: "https"
 allowed_hosts: "*"
 

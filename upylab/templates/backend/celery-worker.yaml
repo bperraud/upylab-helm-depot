@@ -32,9 +32,9 @@ spec:
         imagePullPolicy: Always
         env:
           - name: TIMEOUT
-            value: {{ .Values.TIMEOUT }}
+            value: {{ .Values.TIMEOUT | quote }}
           - name: UNSAFE_MODULES
-            value: {{ .Values.UNSAFE_MODULES }}
+            value: {{ .Values.UNSAFE_MODULES | quote }}
         {{ if .Values.seccomp_profile.enabled }}
         securityContext:
           seccompProfile:

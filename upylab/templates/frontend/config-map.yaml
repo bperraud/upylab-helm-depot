@@ -14,6 +14,7 @@ data:
   TIME_ZONE: "{{ .Values.timezone }}"
   STATIC_ROOT: "/app/web/static_root"
   DATABASE_TYPE: "postgres"
+  SECURE_SSL_REDIRECT: "False"
 
   # Logging
   LOGGING_LTI_FILENAME: "/var/log/web/lti.log"

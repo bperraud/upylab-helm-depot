@@ -29,8 +29,6 @@ dev_mode :
 # frontend
 deployFrontend:
   enabled: true
-deploySSL:
-  enabled: false
 
 timezone: "Europe/Brussels"
 site_domain: "upylab2.ulb.ac.be"

@@ -32,7 +32,6 @@ deployFrontend:
 
 timezone: "Europe/Brussels"
 site_domain: "upylab2.ulb.ac.be"
-#site_domain: "upylab.duckdns.org"
 site_protocol: "https"
 
 # mail settings

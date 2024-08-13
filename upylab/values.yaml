@@ -1,6 +1,6 @@
 
 # worker configuration
-python_version: "3.12-slim"
+python_version: "3.12"
 cpu_limits: 500m
 memory_limits: 512Mi
 cpu_requests: 300m

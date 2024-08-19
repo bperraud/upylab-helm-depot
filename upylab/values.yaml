@@ -8,7 +8,7 @@ memory_requests : 256Mi
 replica : 3
 
 # worker env
-TIMEOUT : "2"
+TIMEOUT : "1"
 UNSAFE_MODULES : "ressource,socket,ctypes,subprocess,shutil"
 
 # seccompp

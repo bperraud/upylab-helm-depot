@@ -15,6 +15,7 @@ data:
   STATIC_ROOT: "/app/web/static_root"
   DATABASE_TYPE: "postgres"
   SECURE_SSL_REDIRECT: "False"
+  MAX_FILE_MB: "{{ .Values.max_file_mb }}"
 
   # Logging
   LOGGING_LTI_FILENAME: "/var/log/web/lti.log"

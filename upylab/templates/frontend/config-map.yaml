@@ -30,13 +30,6 @@ data:
   SITE_EMAIL_HOST: "{{ .Values.site_email_host }}"
   SITE_EMAIL_PORT: "{{ .Values.site_email_port }}"
 
-  # Upylab user & course
-  UPYLAB_USERNAME: "upylab"
-  UPYLAB_EMAIL: "upylab@ulb.be"
-  UPYLAB_FIRSTNAME: "upylab"
-  UPYLAB_LASTNAME: "upylab"
-  UPYLAB_COURSE_NAME: UpyLaB"
-
   # Course settings
   DEFAULT_CHAPTER_NAME: "Général"
   INVITE_TOKEN_LENGTH: "20"

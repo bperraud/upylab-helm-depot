@@ -3,8 +3,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgresdb
-  labels:
-    k8s-app: api-node
 spec:
   replicas: 1
   selector:
@@ -20,8 +18,8 @@ spec:
       - name: postgresdb
         image: postgres:13.3
         envFrom:
-        - configMapRef:
-            name: db-config
+          - configMapRef:
+              name: db-config
         ports:
         - containerPort: 5432
         volumeMounts:
@@ -33,7 +31,7 @@ spec:
             memory: 312Mi
             cpu: 250m
           limits:
-            memory: 700Mi
+            memory: 600Mi
             cpu: 500m
       volumes:
       - name: postgresdata
@@ -62,17 +60,17 @@ spec:
   resources:
     requests:
       storage: 10Gi
----
-apiVersion: autoscaling.k8s.io/v1
-kind: VerticalPodAutoscaler
-metadata:
-  name: postgresdb-vpa
-  namespace: default
-spec:
-  targetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: postgresdb
-  updatePolicy:
-    updateMode: "Auto"
+#---
+#apiVersion: autoscaling.k8s.io/v1
+#kind: VerticalPodAutoscaler
+#metadata:
+#  name: postgresdb-vpa
+#  namespace: default
+#spec:
+#  targetRef:
+#    apiVersion: apps/v1
+#    kind: Deployment
+#    name: postgresdb
+#  updatePolicy:
+#    updateMode: "Auto"
 {{ end }}

@@ -1,32 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-deployment
+  name: api-endpoint
   labels:
-    k8s-app: back-node
-    app: api
+    app: api-endpoint
 spec:
   replicas: 1
   selector:
     matchLabels:
-      k8s-app: back-node
-      app: api
+      app: api-endpoint
   template:
     metadata:
       labels:
-        k8s-app: back-node
-        app: api
+        app: api-endpoint
     spec:
-      runtimeClassName: gvisor  # run pod in gke sandox
+      runtimeClassName: gvisor  # run pod in gke sandbox
 
       containers:
       - name: api
-        image: ryukenin/upylab_api_endpoint:latest
+        image: ryukenin/upylab-endpoint:latest
         env:
-        - name: tempdir
-          value: {{ .Values.tempdir }}
-        - name: max_file_mb
-          value: {{ .Values.max_file_mb | quote }}
+          - name: tempdir
+            value: {{ .Values.tempdir }}
+          - name: max_file_mb
+            value: {{ .Values.max_file_mb | quote }}
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
@@ -54,14 +51,13 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: api
+    app: api-endpoint
   ports:
     - protocol: TCP
       port: 3000           # port: Port within the cluster where the service is available
       targetPort: 3000     # targetPort: Port on the pods where the service forwards traffic
       nodePort: 30000      # nodePort: Port exposed on each node for external access (if type is NodePort)
----
-{{- if not .Values.deployFrontend.enabled }}
+{{ if not .Values.deployFrontend.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -73,6 +69,7 @@ spec:
   ports:
     - port: 80
       targetPort: 3000
+<<<<<<< HEAD
 ---
 apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
@@ -87,3 +84,19 @@ spec:
   updatePolicy:
     updateMode: "Auto"
 {{- end }}
+=======
+{{ end }}
+#---
+#apiVersion: autoscaling.k8s.io/v1
+#kind: VerticalPodAutoscaler
+#metadata:
+#  name: api-endpoint-vpa
+#  namespace: default
+#spec:
+#  targetRef:
+#    apiVersion: apps/v1
+#    kind: Deployment
+#    name: api-endpoint
+#  updatePolicy:
+#    updateMode: "Auto"
+>>>>>>> afa908604aafd6e61e7eb0f1845c4ca7e3e49396

@@ -3,18 +3,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: django-upylab
-  labels:
-    k8s-app: front-node
 spec:
   replicas: 1
   selector:
     matchLabels:
-      k8s-app: front-node
       app: django-upylab
   template:
     metadata:
       labels:
-        k8s-app: front-node
         app: django-upylab
     spec:
 
@@ -39,21 +35,25 @@ spec:
                   key: POSTGRES_PASSWORD
           command: ['sh', '-c', 'until psql -h $PG_HOST -U $PG_USER -d postgres -c "SELECT 1" >/dev/null 2>&1; do sleep 1; done;']
 
-          resources:
-            requests:
-              memory: 1032Mi
-              cpu: 500m
-            limits:
-              memory: 1500Mi
-              cpu: 1000m
 
       containers:
       - name: django-upylab
         image: ryukenin/upylab-pylab:latest
-        #command: ["gunicorn", "pylab.wsgi:application", "--bind", "0.0.0.0:8000", "--workers=4", "--timeout=120"]
+        imagePullPolicy: Always
         envFrom:
           - configMapRef:
+              name: web-config
+          - configMapRef:
               name: db-config
+
+        resources:
+          requests:
+            memory: 1032Mi
+            cpu: 500m
+          limits:
+            memory: 1500Mi
+            cpu: 1500m
+
         ports:
         - containerPort: 8000
         volumeMounts:
@@ -106,17 +106,17 @@ spec:
   resources:
     requests:
       storage: 1Gi
----
-apiVersion: autoscaling.k8s.io/v1
-kind: VerticalPodAutoscaler
-metadata:
-  name: django-upylab-vpa
-  namespace: default
-spec:
-  targetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: django-upylab
-  updatePolicy:
-    updateMode: "Auto"
+#---
+#apiVersion: autoscaling.k8s.io/v1
+#kind: VerticalPodAutoscaler
+#metadata:
+#  name: django-upylab-vpa
+#  namespace: default
+#spec:
+#  targetRef:
+#    apiVersion: apps/v1
+#    kind: Deployment
+#    name: django-upylab
+#  updatePolicy:
+#    updateMode: "Auto"
 {{ end }}

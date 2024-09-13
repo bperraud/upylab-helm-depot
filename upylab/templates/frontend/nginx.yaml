@@ -4,26 +4,23 @@ kind: Deployment
 metadata:
   name: nginx
   labels:
-    k8s-app: front-node
     app: nginx
 spec:
   replicas: 1
   selector:
     matchLabels:
-      k8s-app: front-node
       app: nginx
   template:
     metadata:
       labels:
-        k8s-app: front-node
         app: nginx
     spec:
-
       containers:
       - name: nginx
         image: ryukenin/upylab-nginx:latest
+        imagePullPolicy: Always
         env:
-        - name: SERVER_NAME
+        - name: SITE_DOMAIN
           value: {{ .Values.site_domain }}
         - name: NGINX_ENVSUBST_OUTPUT_DIR
           value: /etc/nginx/conf.d
@@ -37,10 +34,10 @@ spec:
           mountPath: /app/web/media_root
         resources:
           requests:
-            memory: {{ .Values.memory }}
-            cpu: 100m
+            memory: 128Mi
+            cpu: 50m
           limits:
-            memory: {{ .Values.memory }}
+            memory: 256Mi
             cpu: 200m
       volumes:
       - name: staticroot

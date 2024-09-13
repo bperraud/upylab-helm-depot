@@ -15,6 +15,8 @@ data:
   DEBUG: "True"
   ALLOWED_HOSTS: "*"
   TIME_ZONE: {{ .Values.timezone }}
+  LOGGING_LTI_FILENAME: /var/log/web/lti.log
+  LOGGING_LTI_LEVEL: DEBUG
 
   # Site configuration
   SITE_PROTOCOL: {{ .Values.site_protocol }}
@@ -23,6 +25,17 @@ data:
   SITE_EMAIL_PASSWORD: {{ .Values.site_email_password }}
   SITE_EMAIL_HOST: {{ .Values.site_email_host }}
   SITE_EMAIL_PORT: {{ .Values.site_email_port | quote }}
+
+  # Upylab user & course
+  UPYLAB_USERNAME: upylab
+  UPYLAB_EMAIL: upylab@ulb.be
+  UPYLAB_FIRSTNAME: upylab
+  UPYLAB_LASTNAME: upylab
+  UPYLAB_COURSE_NAME: UpyLaB
+
+  # Course settings
+  DEFAULT_CHAPTER_NAME: Général
+  INVITE_TOKEN_LENGTH: 20
 
   # Prof signup restricted
   PROF_SIGNUP_RESTRICTED: "False"

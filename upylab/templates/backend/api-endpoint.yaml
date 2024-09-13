@@ -69,22 +69,6 @@ spec:
   ports:
     - port: 80
       targetPort: 3000
-<<<<<<< HEAD
----
-apiVersion: autoscaling.k8s.io/v1
-kind: VerticalPodAutoscaler
-metadata:
-  name: api-endpoint-vpa
-  namespace: default
-spec:
-  targetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: api-deployment
-  updatePolicy:
-    updateMode: "Auto"
-{{- end }}
-=======
 {{ end }}
 #---
 #apiVersion: autoscaling.k8s.io/v1
@@ -99,4 +83,3 @@ spec:
 #    name: api-endpoint
 #  updatePolicy:
 #    updateMode: "Auto"
->>>>>>> afa908604aafd6e61e7eb0f1845c4ca7e3e49396

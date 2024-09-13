@@ -3,11 +3,15 @@ kind: Ingress
 metadata:
   name: my-ingress
   annotations:
-    #ingress.kubernetes.io/ssl-redirect: "true"
     #kubernetes.io/pre-shared-cert: "staging-google-managed-ssl"
-    kubernetes.io/ingress.allow-http: "true"
+    ingress.kubernetes.io/ssl-redirect: "true"
+    {{ if .Values.dev_mode.enabled }}
+    networking.gke.io/managed-certificates: my-certificate
+    {{ else }}
+    kubernetes.io/ingress.allow-http: "false"
     kubernetes.io/spec.ingressClassName: "gce"
     networking.gke.io/managed-certificates: upylab-certificate
+    {{ end }}
     kubernetes.io/ingress.global-static-ip-name: "static-ip"
 spec:
   rules:
@@ -21,3 +25,7 @@ spec:
                 name: nginx
                 port:
                   number: 80
+  tls:
+  - hosts:
+    - upylab.duckdns.org
+    secretName: upylab-certificate

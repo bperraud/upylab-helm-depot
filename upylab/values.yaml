@@ -1,92 +1,41 @@
 
 # worker configuration
-python_version: "3.12-slim"
+python_version: "3.12"
 cpu_limits: 500m
 memory_limits: 512Mi
 cpu_requests: 300m
 memory_requests : 256Mi
-replica : 2
+replica : 3
+
+# worker env
+TIMEOUT : "1"
+UNSAFE_MODULES : "ressource,socket,ctypes,subprocess,shutil"
 
 # seccompp
-seccomp_profile :
+seccomp_profile:
   enabled: false
-
 restrict_system_call:
   - exit
   - open
   - read
 
 # backend-endpoint
-tempdir : "/tmp/compilab/"
-max_file_mb : 1
+tempdir : "/tmp/compilab"
+max_file_mb : "5"
 
+dev_mode :
+  enabled: false
 
 # frontend
-deployFrontend :
+deployFrontend:
   enabled: true
 
+timezone: "Europe/Brussels"
+site_domain: "upylab2.ulb.ac.be"
+site_protocol: "https"
 
-frontAffinity :
-  tolerations:
-  - key: affinity-taint
-    operator: Equal
-    value: front-end
-    effect: NoSchedule
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: cloud.google.com/gke-nodepool
-            operator: In
-            values:
-            - front-end
-
-backAffinity :
-  tolerations:
-  - key: affinity-taint
-    operator: Equal
-    value: back-end
-    effect: NoSchedule
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: cloud.google.com/gke-nodepool
-            operator: In
-            values:
-            - back-end
-
-sandboxAffinity :
-  tolerations:
-  - key: sandbox.gke.io/runtime
-    operator: Equal
-    value: gvisor
-    effect: NoSchedule
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: sandbox.gke.io/runtime
-            operator: In
-            values:
-            - gvisor
-
-memory: 512Mi
-
-deploySSL :
-  enabled: true
-
-timezone: 'Europe/Brussels'
-
-#site_domain: upylab2.ulb.ac.be
-site_domain: upylab.duckdns.org
-site_protocol: https
-site_email: nymano@s19.be
-site_email_password: "<>"
-site_email_host: smtp.gmail.com
+# mail settings
+site_email: "upylab@ulb.be"
+site_email_password: "Y4u%y^#Ez88nUp"
+site_email_host: "smtp.office365.com"
 site_email_port: "587"
-
-allowed_hosts: '*'

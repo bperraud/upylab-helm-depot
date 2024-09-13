@@ -3,28 +3,42 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: db-config
+  name: web-config
 data:
-  POSTGRES_USER: admin
-  POSTGRES_PASSWORD: admin
-  POSTGRES_DB: upylab_db
-  DATABASE_HOST: postgresdb
-  DATABASE_PORT: "5432"
   # Django settings
   SECRET_KEY: "qj8nyxnmjo2(jz+1c5i$4)mp6kdmg-:&6_n*y9_8c#r^is1po)"
+  {{ if .Values.dev_mode.enabled }}
   DEBUG: "True"
+  {{ end }}
   ALLOWED_HOSTS: "*"
-  TIME_ZONE: {{ .Values.timezone }}
-  LOGGING_LTI_FILENAME: /var/log/web/lti.log
-  LOGGING_LTI_LEVEL: DEBUG
+  TIME_ZONE: "{{ .Values.timezone }}"
+  STATIC_ROOT: "/app/web/static_root"
+  DATABASE_TYPE: "postgres"
+  SECURE_SSL_REDIRECT: "False"
+  MAX_FILE_MB: "{{ .Values.max_file_mb }}"
+
+  # Logging
+  LOGGING_LTI_FILENAME: "/var/log/web/lti.log"
+  LOGGING_LTI_LEVEL: "DEBUG"
 
   # Site configuration
-  SITE_PROTOCOL: {{ .Values.site_protocol }}
-  SITE_DOMAIN: {{ .Values.site_domain }}
-  SITE_EMAIL: {{ .Values.site_email }}
-  SITE_EMAIL_PASSWORD: {{ .Values.site_email_password }}
-  SITE_EMAIL_HOST: {{ .Values.site_email_host }}
-  SITE_EMAIL_PORT: {{ .Values.site_email_port | quote }}
+  SITE_PROTOCOL: "{{ .Values.site_protocol }}"
+  SITE_DOMAIN: "{{ .Values.site_domain }}"
+  SITE_EMAIL: "{{ .Values.site_email }}"
+  SITE_EMAIL_PASSWORD: "{{ .Values.site_email_password }}"
+  SITE_EMAIL_HOST: "{{ .Values.site_email_host }}"
+  SITE_EMAIL_PORT: "{{ .Values.site_email_port }}"
+
+  # Upylab user & course
+  UPYLAB_USERNAME: "upylab"
+  UPYLAB_EMAIL: "upylab@ulb.be"
+  UPYLAB_FIRSTNAME: "upylab"
+  UPYLAB_LASTNAME: "upylab"
+  UPYLAB_COURSE_NAME: UpyLaB"
+
+  # Course settings
+  DEFAULT_CHAPTER_NAME: "Général"
+  INVITE_TOKEN_LENGTH: "20"
 
   # Upylab user & course
   UPYLAB_USERNAME: upylab
@@ -40,10 +54,27 @@ data:
   # Prof signup restricted
   PROF_SIGNUP_RESTRICTED: "False"
   PROF_SIGNUP_RESTRICTED_CONTACT_NAME: "UpyLaB"
-  PROF_SIGNUP_RESTRICTED_CONTACT_EMAIL: upylab@ulb.be
+  PROF_SIGNUP_RESTRICTED_CONTACT_EMAIL: "upylab@ulb.be"
 
   # Backend API connection
-  BKEND_API_SECRET_KEY: helloworld
-  BKEND_API_ADDR_TESTSOLUTION: http://api-service.default.svc.cluster.local:3000/test_solution
-  BKEND_API_ADDR_TESTEXERCISE: http://api-service.default.svc.cluster.local:3000/test_exercice
+  BKEND_API_SECRET_KEY: "helloworld"
+  BKEND_API_ADDR_TESTSOLUTION: "http://api-service.default.svc.cluster.local:3000/test_solution"
+  BKEND_API_ADDR_TESTEXERCISE: "http://api-service.default.svc.cluster.local:3000/test_exercice"
+
+  # Dashboard Celery
+  CELERY_BROKER_URL: "redis://redis-upylab:6379"
+  CELERY_RESULT_BACKEND: "redis://redis-upylab:6379"
+  TIMEREPORTS_REFRESH_INTERVAL: "30.0"
+  CELERY_DEL_USERS_GDPR_REFRESH_INTERVAL: "604800.0"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+data:
+  POSTGRES_USER: "admin"
+  POSTGRES_PASSWORD: "admin"
+  POSTGRES_DB: "upylab_db"
+  DATABASE_HOST: "postgresdb"
+  DATABASE_PORT: "5432"
 {{ end }}

@@ -20,6 +20,7 @@ data:
   # Logging
   LOGGING_LTI_FILENAME: "/var/log/web/lti.log"
   LOGGING_LTI_LEVEL: "DEBUG"
+  LOGGING_DJANGO_FILENAME: "/var/log/web/django.log"
 
   # Site configuration
   SITE_PROTOCOL: "{{ .Values.site_protocol }}"

@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-endpoint
+  name: upylab-endpoint
   labels:
-    app: api-endpoint
+    app: upylab-endpoint
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: api-endpoint
+      app: upylab-endpoint
   template:
     metadata:
       labels:
-        app: api-endpoint
+        app: upylab-endpoint
     spec:
       runtimeClassName: gvisor  # run pod in gke sandbox
 
       containers:
-      - name: api
+      - name: upylab-endpoint
         image: ryukenin/upylab-endpoint:latest
         env:
           - name: tempdir
@@ -47,11 +47,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: api-service
+  name: upylab-api-service
 spec:
   type: NodePort
   selector:
-    app: api-endpoint
+    app: upylab-endpoint
   ports:
     - protocol: TCP
       port: 3000           # port: Port within the cluster where the service is available
@@ -61,25 +61,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: api-loadbalancer
+  name: upylab-api-service
 spec:
   type: LoadBalancer
   selector:
-    app: api
+    app: upylab-endpoint
   ports:
     - port: 80
       targetPort: 3000
 {{ end }}
-#---
-#apiVersion: autoscaling.k8s.io/v1
-#kind: VerticalPodAutoscaler
-#metadata:
-#  name: api-endpoint-vpa
-#  namespace: default
-#spec:
-#  targetRef:
-#    apiVersion: apps/v1
-#    kind: Deployment
-#    name: api-endpoint
-#  updatePolicy:
-#    updateMode: "Auto"

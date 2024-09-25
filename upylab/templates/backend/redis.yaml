@@ -1,53 +1,63 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redis-upylab
+	name: redis-upylab
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: redis-upylab
-  template:
-    metadata:
-      labels:
-        app: redis-upylab
-    spec:
-      runtimeClassName: gvisor  # run pod in gke sandbox
+	replicas: 1
+	selector:
+		matchLabels:
+			app: redis-upylab
+	template:
+		metadata:
+			labels:
+				app: redis-upylab
+		spec:
+			runtimeClassName: gvisor  # run pod in gke sandbox
 
-      containers:
-      - name: redis
-        image: redis:latest
-        ports:
-        - containerPort: 6379
-        resources:
-          requests:
-            memory: 256Mi
-            cpu: 100m
-          limits:
-            memory: 512Mi
-            cpu: 200m
+			containers:
+			- name: redis
+				image: redis:latest
+				command: ["redis-server"]
+				args:
+					- "--save"
+					- ""               # disables RDB snapshotting
+					- "--appendonly"
+					- "no"             # disables AOF persistence
+          - "--maxmemory"
+          - "200mb"
+          - "--maxmemory-policy"
+          - "allkeys-lru"    # Eviction policy: Least Recently Used
+				ports:
+				- containerPort: 6379
+				resources:
+					requests:
+						memory: 256Mi
+						cpu: 100m
+					limits:
+						memory: 512Mi
+						cpu: 200m
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: redis-upylab
+	name: redis-upylab
 spec:
-  type: ClusterIP
-  ports:
-  - port: 6379
-    targetPort: 6379
-  selector:
-    app: redis-upylab
----
-apiVersion: autoscaling.k8s.io/v1
-kind: VerticalPodAutoscaler
-metadata:
-  name: redis-upylab-vpa
-  namespace: default
-spec:
-  targetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: redis-upylab
-  updatePolicy:
-    updateMode: "Auto"
+	type: ClusterIP
+	ports:
+	- port: 6379
+		targetPort: 6379
+	selector:
+		app: redis-upylab
+#---
+#apiVersion: autoscaling.k8s.io/v1
+#kind: VerticalPodAutoscaler
+#metadata:
+#	name: redis-upylab-vpa
+#	namespace: default
+#spec:
+#	targetRef:
+#		apiVersion: apps/v1
+#		kind: Deployment
+#		name: redis-upylab
+#	updatePolicy:
+#		updateMode: "Auto"

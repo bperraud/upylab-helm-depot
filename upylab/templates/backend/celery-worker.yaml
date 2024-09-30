@@ -50,6 +50,20 @@ spec:
             memory: {{ .Values.memory_requests }}
             cpu: {{ .Values.cpu_requests }}
 
+        livenessProbe:
+          exec:
+            command:
+            - celery
+            - -A
+            - tasks
+            - inspect
+            - ping
+          failureThreshold: 1
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 10
+
         volumeMounts:
         - mountPath: /tmp/compilab/
           name: filestore

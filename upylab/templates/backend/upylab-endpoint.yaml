@@ -39,6 +39,16 @@ spec:
             memory: 1024Mi
             cpu: 250m
 
+        livenessProbe:
+          httpGet:
+            path: /health-check
+            port: 3000
+          failureThreshold: 1
+          initialDelaySeconds: 30
+          periodSeconds: 60
+          successThreshold: 1
+          timeoutSeconds: 10
+
       volumes:
       - name: filestore
         persistentVolumeClaim:

@@ -41,7 +41,7 @@ spec:
 
         livenessProbe:
           httpGet:
-            path: /health-check
+            path: /health_check
             port: 3000
           failureThreshold: 1
           initialDelaySeconds: 30

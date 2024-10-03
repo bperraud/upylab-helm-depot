@@ -61,3 +61,16 @@ To run upylab in a lightweight environnement  : cd inside the docker directory a
 ---
 
 From there the nginx container is accessible through 80 and 443 port on every interface on the host machine
+# Service Architecture Overview
+
+Here’s a list of the different services used in the project:
+
+1. **[django-upylab](https://github.com/bperraud/pylab)**
+   A Django application serving as the front-end component, with the corresponding Nginx configuration.
+
+2. **[upylab-endpoint](https://github.com/bperraud/upylab-endpoint)**
+   The endpoint service for handling incoming requests from the front-end, generate the test from the corresponding json and dispatch it to the worker.
+
+3. **[upylab-celery-worker](https://github.com/bperraud/upylab-celery-worker)**
+   A Celery worker service for processing tasks that will run the student and reference python code.
+

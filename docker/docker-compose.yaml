@@ -1,0 +1,66 @@
+version: "3.9"
+
+services:
+
+  web:
+    container_name: django-upylab
+    image: ryukenin/upylab-pylab:sqlite
+    env_file:
+      - ./web.env
+    volumes:
+      - sqlite_data:/app/web/sqlite
+      - staticroot:/app/web/static_root
+      - mediaroot:/app/web/media_root
+      - pylab_logs:/var/log/pylab
+    expose:
+      - 8000
+
+  nginx:
+    container_name: nginx
+    image: ryukenin/upylab-nginx:latest
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - staticroot:/app/web/static_root
+      - mediaroot:/app/web/media_root
+      - nginxconf:/etc/nginx/conf.d
+    depends_on:
+      - web
+
+  redis:
+    container_name: redis-upylab
+    image: redis
+    restart: always
+    expose:
+      - 6379
+
+  compilab:
+    container_name: compilab
+    image: ryukenin/upylab-endpoint:latest
+    expose:
+      - 3000
+    volumes:
+      - compilab_data:/var/local/compilab/
+    environment:
+      - tempdir=/var/local/compilab
+      - max_file_mb=1
+    command: ["gunicorn", "-b", "0.0.0.0:3000", "compilab.wsgi.compilab:application", "--log-level", "debug", "--timeout", "600"]
+
+  celery-worker:
+    container_name: celery-worker
+    image: ryukenin/upylab-celery-worker:3.12
+    environment:
+      - UNSAFE_MODULES=os
+      - TEMPDIR=/var/local/compilab/
+    volumes:
+      - compilab_data:/var/local/compilab/
+
+volumes:
+  sqlite_data:
+  staticroot:
+  mediaroot:
+  nginxconf:
+  pylab_logs:
+  compilab_data:

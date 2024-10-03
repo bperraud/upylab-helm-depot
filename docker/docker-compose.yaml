@@ -4,7 +4,7 @@ services:
 
   web:
     container_name: django-upylab
-    image: ryukenin/upylab-pylab:sqlite
+    image: ryukenin/upylab-pylab:latest
     env_file:
       - ./web.env
     volumes:

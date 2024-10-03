@@ -2,6 +2,18 @@ version: "3.9"
 
 services:
 
+  # use this container if database type to postgres in .env
+  #db:
+  #  container_name: postgresdb
+  #  image: postgres:13.3
+  #  restart: always
+  #  env_file:
+  #    - ./env_configs/db_conn.env
+  #  ports:
+  #    - "5432:5432"
+  #  volumes:
+  #    - postgresdata:/var/lib/postgresql/data
+
   web:
     container_name: django-upylab
     image: ryukenin/upylab-pylab:latest

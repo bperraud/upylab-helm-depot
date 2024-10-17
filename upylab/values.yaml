@@ -1,5 +1,5 @@
 
-# worker configuration
+# -- worker configuration --
 python_version: "3.12"
 cpu_limits: 500m
 memory_limits: 512Mi
@@ -7,8 +7,10 @@ cpu_requests: 300m
 memory_requests : 256Mi
 replica : 3
 
-# worker env
+# -- worker env --
+# set the timeout in seconds for the execution of the code
 TIMEOUT : "1"
+# list of unsafe python modules (will throw an exception in the code if used)
 UNSAFE_MODULES : "ressource,socket,ctypes,subprocess,shutil"
 
 # seccompp
@@ -19,14 +21,17 @@ restrict_system_call:
   - open
   - read
 
-# backend-endpoint
+# -- backend-endpoint --
 tempdir : "/tmp/compilab"
+# set the maximum file size in MB that can be included in the test
 max_file_mb : "5"
 
+# if dev_mode is enabled, the DEBUG mode is activated in django
+# and the SSL certificate can be self-signed (see ingress.yaml)
 dev_mode :
   enabled: false
 
-# frontend
+# if deployFrontend is enabled, the django application is deployed and exposed
 deployFrontend:
   enabled: true
 
@@ -34,8 +39,8 @@ timezone: "Europe/Brussels"
 site_domain: "upylab2.ulb.ac.be"
 site_protocol: "https"
 
-# mail settings
+# -- mail settings --
 site_email: "upylab@ulb.be"
-site_email_password: "Y4u%y^#Ez88nUp"
+site_email_password: "<>"
 site_email_host: "smtp.office365.com"
 site_email_port: "587"

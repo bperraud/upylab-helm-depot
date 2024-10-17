@@ -27,20 +27,20 @@ tempdir : "/tmp/compilab"
 max_file_mb : "5"
 
 # if dev_mode is enabled, the DEBUG mode is activated in django
-# and the SSL certificate can be self-signed (see ingress.yaml)
+# and the SSL certificate can be self-signed (named my-certificate)
 dev_mode :
   enabled: false
 
-# if deployFrontend is enabled, the django application is deployed and exposed
+# if deployFrontend is enabled, the django application is deployed and exposed through nginx
 deployFrontend:
   enabled: true
 
 timezone: "Europe/Brussels"
-site_domain: "upylab2.ulb.ac.be"
+site_domain: "your-domain.com"
 site_protocol: "https"
 
 # -- mail settings --
-site_email: "upylab@ulb.be"
+site_email: "your@mail.com"
 site_email_password: "<>"
 site_email_host: "smtp.office365.com"
 site_email_port: "587"

@@ -9,7 +9,7 @@ replica : 3
 
 # worker env
 TIMEOUT : "1"
-UNSAFE_MODULES : "ressource,socket,ctypes,subprocess,shutil"
+UNSAFE_MODULES : "socket,ctypes,shutil"
 
 # seccompp
 seccomp_profile:
@@ -31,7 +31,8 @@ deployFrontend:
   enabled: true
 
 timezone: "Europe/Brussels"
-site_domain: "upylab2.ulb.ac.be"
+# site_domain: "upylab2.ulb.ac.be"
+site_domain: "upylab-test"
 site_protocol: "https"
 
 # mail settings

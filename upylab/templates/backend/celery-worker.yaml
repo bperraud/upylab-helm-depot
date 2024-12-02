@@ -15,7 +15,7 @@ spec:
       labels:
         app: celery-worker
     spec:
-      runtimeClassName: gvisor  # run pod in gke sandbox
+      # runtimeClassName: gvisor  # run pod in gke sandbox
 
       {{ if .Values.seccomp_profile.enabled }}
       initContainers:

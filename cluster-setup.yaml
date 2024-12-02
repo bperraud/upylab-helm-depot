@@ -1,0 +1,185 @@
+POST https://container.googleapis.com/v1beta1/projects/upylab-sandbox/zones/europe-west1-b/clusters
+{
+  "cluster": {
+    "name": "standard-upylab",
+    "masterAuth": {
+      "clientCertificateConfig": {}
+    },
+    "network": "projects/upylab-sandbox/global/networks/default",
+    "addonsConfig": {
+      "httpLoadBalancing": {},
+      "horizontalPodAutoscaling": {},
+      "kubernetesDashboard": {
+        "disabled": true
+      },
+      "dnsCacheConfig": {
+        "enabled": true
+      },
+      "gcePersistentDiskCsiDriverConfig": {
+        "enabled": true
+      },
+      "gcsFuseCsiDriverConfig": {},
+      "rayOperatorConfig": {}
+    },
+    "subnetwork": "projects/upylab-sandbox/regions/europe-west1/subnetworks/default",
+    "nodePools": [
+      {
+        "name": "front-end",
+        "config": {
+          "machineType": "e2-custom-2-4096",
+          "diskSizeGb": 100,
+          "oauthScopes": [
+            "https://www.googleapis.com/auth/devstorage.read_only",
+            "https://www.googleapis.com/auth/logging.write",
+            "https://www.googleapis.com/auth/monitoring",
+            "https://www.googleapis.com/auth/servicecontrol",
+            "https://www.googleapis.com/auth/service.management.readonly",
+            "https://www.googleapis.com/auth/trace.append"
+          ],
+          "metadata": {
+            "disable-legacy-endpoints": "true"
+          },
+          "imageType": "COS_CONTAINERD",
+          "diskType": "pd-balanced",
+          "shieldedInstanceConfig": {
+            "enableIntegrityMonitoring": true
+          },
+          "advancedMachineFeatures": {
+            "enableNestedVirtualization": false
+          }
+        },
+        "initialNodeCount": 1,
+        "autoscaling": {},
+        "management": {
+          "autoUpgrade": true,
+          "autoRepair": true
+        },
+        "maxPodsConstraint": {
+          "maxPodsPerNode": "110"
+        },
+        "networkConfig": {},
+        "upgradeSettings": {
+          "maxSurge": 1,
+          "strategy": "SURGE"
+        },
+        "queuedProvisioning": {}
+      },
+      {
+        "name": "back",
+        "config": {
+          "machineType": "e2-custom-2-4096",
+          "diskSizeGb": 100,
+          "oauthScopes": [
+            "https://www.googleapis.com/auth/devstorage.read_only",
+            "https://www.googleapis.com/auth/logging.write",
+            "https://www.googleapis.com/auth/monitoring",
+            "https://www.googleapis.com/auth/servicecontrol",
+            "https://www.googleapis.com/auth/service.management.readonly",
+            "https://www.googleapis.com/auth/trace.append"
+          ],
+          "metadata": {
+            "disable-legacy-endpoints": "true"
+          },
+          "imageType": "COS_CONTAINERD",
+          "diskType": "pd-balanced",
+          "sandboxConfig": {
+            "type": "GVISOR"
+          },
+          "shieldedInstanceConfig": {
+            "enableIntegrityMonitoring": true
+          },
+          "advancedMachineFeatures": {
+            "enableNestedVirtualization": false
+          }
+        },
+        "initialNodeCount": 1,
+        "autoscaling": {},
+        "management": {
+          "autoUpgrade": true,
+          "autoRepair": true
+        },
+        "maxPodsConstraint": {
+          "maxPodsPerNode": "110"
+        },
+        "networkConfig": {},
+        "upgradeSettings": {
+          "maxSurge": 1,
+          "strategy": "SURGE"
+        },
+        "queuedProvisioning": {}
+      }
+    ],
+    "locations": [
+      "europe-west1-b"
+    ],
+    "networkPolicy": {},
+    "ipAllocationPolicy": {
+      "useIpAliases": true,
+      "stackType": "IPV4"
+    },
+    "masterAuthorizedNetworksConfig": {},
+    "binaryAuthorization": {
+      "evaluationMode": "DISABLED"
+    },
+    "autoscaling": {},
+    "networkConfig": {
+      "datapathProvider": "LEGACY_DATAPATH"
+    },
+    "defaultMaxPodsConstraint": {
+      "maxPodsPerNode": "110"
+    },
+    "authenticatorGroupsConfig": {},
+    "databaseEncryption": {
+      "state": "DECRYPTED"
+    },
+    "verticalPodAutoscaling": {
+      "enabled": true
+    },
+    "shieldedNodes": {
+      "enabled": true
+    },
+    "releaseChannel": {
+      "channel": "REGULAR"
+    },
+    "notificationConfig": {
+      "pubsub": {}
+    },
+    "initialClusterVersion": "1.30.3-gke.1969001",
+    "location": "europe-west1-b",
+    "autopilot": {},
+    "loggingConfig": {
+      "componentConfig": {
+        "enableComponents": [
+          "SYSTEM_COMPONENTS",
+          "WORKLOADS"
+        ]
+      }
+    },
+    "monitoringConfig": {
+      "componentConfig": {
+        "enableComponents": [
+          "SYSTEM_COMPONENTS"
+        ]
+      },
+      "managedPrometheusConfig": {
+        "enabled": true,
+        "autoMonitoringConfig": {
+          "scope": "NONE"
+        }
+      }
+    },
+    "protectConfig": {
+      "workloadConfig": {
+        "auditMode": "BASIC"
+      },
+      "workloadVulnerabilityMode": "DISABLED"
+    },
+    "securityPostureConfig": {
+      "mode": "BASIC",
+      "vulnerabilityMode": "VULNERABILITY_DISABLED"
+    },
+    "secretManagerConfig": {
+      "enabled": false
+    }
+  }
+}

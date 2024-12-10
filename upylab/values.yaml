@@ -1,11 +1,11 @@
 
 # -- worker configuration --
 python_version: "3.12"
-cpu_limits: 500m
-memory_limits: 512Mi
-cpu_requests: 300m
-memory_requests : 256Mi
-replica : 3
+cpu_limits: 1000m
+memory_limits: 1024Mi
+cpu_requests: 800m
+memory_requests : 512Mi
+replica : 1
 
 # -- worker env --
 # set the timeout in seconds for the execution of the code

@@ -15,7 +15,7 @@ spec:
       labels:
         app: celery-worker
     spec:
-      # runtimeClassName: gvisor  # run pod in gke sandbox
+      runtimeClassName: gvisor  # run pod in gke sandbox
 
       {{ if .Values.seccomp_profile.enabled }}
       initContainers:
@@ -55,14 +55,14 @@ spec:
             command:
             - celery
             - -A
-            - tasks
+            - celery_app
             - inspect
             - ping
           failureThreshold: 1
           initialDelaySeconds: 30
           periodSeconds: 30
           successThreshold: 1
-          timeoutSeconds: 10
+          timeoutSeconds: 15
 
         volumeMounts:
         - mountPath: /tmp/compilab/

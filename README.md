@@ -26,11 +26,11 @@ To install a Kubernetes cluster on Google Cloud Platform (GCP) and deploy applic
 7. **Create Static IP** :
 
 	```bash
-	gcloud compute addresses create ADDRESS_NAME --global
+	gcloud compute addresses create static-ip --global
 8. **Edit you DNS** : Configure the DNS records for your domains to point to your IP address. To find the static IP address you created, run the following command:
 
 	```bash
-	gcloud compute addresses describe ADDRESS_NAME --global
+	gcloud compute addresses describe static-ip --global
 9. **Add the Helm Repository** : Add the Helm repository where your Helm chart is hosted.
 
 	```bash

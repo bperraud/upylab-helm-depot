@@ -12,7 +12,7 @@ metadata:
     kubernetes.io/spec.ingressClassName: "gce"
     networking.gke.io/managed-certificates: upylab-certificate
     {{ end }}
-    kubernetes.io/ingress.global-static-ip-name: "static-ip"
+    kubernetes.io/ingress.global-static-ip-name: "static-ip2"
 spec:
   rules:
     - host: {{ .Values.site_domain }}

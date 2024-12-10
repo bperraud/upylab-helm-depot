@@ -5,7 +5,7 @@ cpu_limits: 1000m
 memory_limits: 1024Mi
 cpu_requests: 800m
 memory_requests : 512Mi
-replica : 1
+replica : "1"
 
 # -- worker env --
 # set the timeout in seconds for the execution of the code

@@ -42,8 +42,8 @@ data:
   UPYLAB_COURSE_NAME: UpyLaB
 
   # Course settings
-  DEFAULT_CHAPTER_NAME: Général
-  INVITE_TOKEN_LENGTH: 20
+  DEFAULT_CHAPTER_NAME: "Général"
+  INVITE_TOKEN_LENGTH: "20"
 
   # Prof signup restricted
   PROF_SIGNUP_RESTRICTED: "False"

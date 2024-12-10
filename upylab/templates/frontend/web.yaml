@@ -14,6 +14,13 @@ spec:
         app: django-upylab
     spec:
 
+      {{- with .Values.frontAffinity }}
+      tolerations:
+        {{- toYaml .tolerations | nindent 6 }}
+      affinity:
+        {{- toYaml .affinity | nindent 8 }}
+      {{- end }}
+
       initContainers:
         - name: wait-for-postgres
           image: postgres:13.3
@@ -34,7 +41,6 @@ spec:
                   name: db-config
                   key: POSTGRES_PASSWORD
           command: ['sh', '-c', 'until psql -h $PG_HOST -U $PG_USER -d postgres -c "SELECT 1" >/dev/null 2>&1; do sleep 1; done;']
-
 
       containers:
       - name: django-upylab

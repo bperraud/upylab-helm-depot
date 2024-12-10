@@ -13,6 +13,13 @@ spec:
           app: redis-upylab
     spec:
       # runtimeClassName: gvisor  # run pod in gke sandbox
+      
+      {{- with .Values.backAffinity }}
+      tolerations:
+        {{- toYaml .tolerations | nindent 6 }}
+      affinity:
+        {{- toYaml .affinity | nindent 8 }}
+      {{- end }}
 
       containers:
       - name: redis

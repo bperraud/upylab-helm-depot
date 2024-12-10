@@ -10,12 +10,42 @@ replica : 3
 # -- worker env --
 # set the timeout in seconds for the execution of the code
 TIMEOUT : "1"
-<<<<<<< HEAD
 UNSAFE_MODULES : "socket,ctypes,shutil"
-=======
-# list of unsafe python modules (will throw an exception in the code if used)
-UNSAFE_MODULES : "ressource,socket,ctypes,subprocess,shutil"
->>>>>>> bb7ed369cd87f61c64c0be58e93dbeb568678708
+
+
+# pod affinity
+frontAffinity :
+  tolerations:
+  - key: affinity-taint
+    operator: Equal
+    value: front-end
+    effect: NoSchedule
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: cloud.google.com/gke-nodepool
+            operator: In
+            values:
+            - front-end
+
+backAffinity :
+  tolerations:
+  - key: affinity-taint
+    operator: Equal
+    value: back-end
+    effect: NoSchedule
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: cloud.google.com/gke-nodepool
+            operator: In
+            values:
+            - back-end
+
 
 # seccomp
 seccomp_profile:
@@ -40,16 +70,5 @@ deployFrontend:
   enabled: true
 
 timezone: "Europe/Brussels"
-<<<<<<< HEAD
 # site_domain: "upylab2.ulb.ac.be"
-site_domain: "upylab-test"
-=======
 site_domain: "your-domain.com"
->>>>>>> bb7ed369cd87f61c64c0be58e93dbeb568678708
-site_protocol: "https"
-
-# -- mail settings --
-site_email: "your@mail.com"
-site_email_password: "<>"
-site_email_host: "smtp.office365.com"
-site_email_port: "587"
